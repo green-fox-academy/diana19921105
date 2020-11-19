@@ -12,7 +12,7 @@ public class CodingHours {
 
         int averageWorkHours = 52;
         int totalWorkingHours = semesterPeriodInWeeks * averageWorkHours;
-        double percentageOfCodingHours = (double) codingHoursPerSemester / averageWorkHours ;
+        double percentageOfCodingHours = (double) codingHoursPerSemester / averageWorkHours;
 
         System.out.println(percentageOfCodingHours);
 

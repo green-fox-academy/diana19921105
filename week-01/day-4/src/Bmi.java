@@ -6,6 +6,6 @@ public class Bmi {
         double bmi = massInKg / (heightInM * heightInM);
 
         System.out.println(bmi);
-        }
     }
+}
 

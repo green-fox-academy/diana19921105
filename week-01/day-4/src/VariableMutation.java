@@ -36,7 +36,6 @@ public class VariableMutation {
         System.out.println(g2 * 2 > g1);
 
         int h = 135798745;
-        boolean itHas11AsDivisor;
 
         System.out.println(h % 11 == 0);
 

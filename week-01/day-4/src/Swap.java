@@ -4,9 +4,9 @@ public class Swap {
         int a = 123;
         int b = 526;
 
-       int temporary = a;
-       a = b;
-       b = temporary;
+        int temporary = a;
+        a = b;
+        b = temporary;
 
         System.out.println(a);
         System.out.println(b);
