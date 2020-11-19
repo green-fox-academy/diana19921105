@@ -8,6 +8,6 @@ public class MileToKmConverter {
 
         double kilometers = userInput * 1.609344;
 
-        System.out.println(kilometers);
+        System.out.println(userInput + " miles is: " + kilometers + " kilometers");
     }
 }
