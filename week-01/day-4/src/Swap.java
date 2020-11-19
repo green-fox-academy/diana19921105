@@ -1,14 +1,12 @@
 public class Swap {
     public static void main(String[] args) {
 
-        int a;
-        int b;
+        int a = 123;
+        int b = 526;
 
-        a = 123;
-        b = 526;
-
-        a = 526;
-        b = 123;
+       int temporary = a;
+       a = b;
+       b = temporary;
 
         System.out.println(a);
         System.out.println(b);
