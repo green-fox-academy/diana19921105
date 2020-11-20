@@ -27,9 +27,7 @@ public class GuessTheNumber {
             } else {
                 System.out.println("You found the number: " + guessNumber);
             }
-        }
-        while (guessNumber != storedNumber);
+        } while (guessNumber != storedNumber);
     }
-
 }
 
