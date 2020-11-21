@@ -1,5 +1,4 @@
-//public class ConditionalVariableMutation {
-//  public static void main(String[] args) {
+
 //    double a = 24;
 //    int out = 0;
 //    // if a is even increment out by one
@@ -55,29 +54,26 @@ public class ConditionalVariableMutation {
         if (b >= 10 && b <= 20) {
             out2 = "Sweet";
         }
-        if (b <= 10) {
+        if (b < 10) {
             out2 = "Less";
         }
-        if (b >= 20) {
+        if (b > 20) {
             out2 = "More";
         }
 
         System.out.println(out2);
 
 
-        int c = 12;
+        int c = 60;
         int credits = 100;
-        boolean isBonus = true;
+        boolean isBonus = false;
 
         if (credits >= 50 && isBonus == false) {
             c -= 2;
         } else if (credits < 50 && isBonus == false) {
             c--;
         }
-        //System.out.println(c);
-        else if (isBonus == true) {
-            System.out.println(c);
-        }
+        System.out.println(c);
 
         int d = 7;
         int time = 500;
@@ -88,7 +84,7 @@ public class ConditionalVariableMutation {
         } else if (time > 200) {
             out3 = "Time out";
         } else {
-            out3 = "Run Forest run";
+            out3 = "Run Forest Run!";
         }
         System.out.println(out3);
     }
