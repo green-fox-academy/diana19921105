@@ -24,18 +24,16 @@ public class PartyIndicator {
         int numberOfBoys = scanner.nextInt();
 
         int sum = numberOfGirls + numberOfBoys;
-        int averageOfGirls = sum / numberOfGirls;
-        int averageOfBoys = sum / numberOfBoys;
 
 
-        if (numberOfGirls == numberOfBoys && numberOfGirls + numberOfBoys >= 20) {
-            System.out.println("The party is excellent!");
-        } else if (sum >= 20 && averageOfBoys != averageOfGirls) {
-            System.out.println("Quite cool party!");
-        } else if (sum <= 20) {
-            System.out.println("Average party...");
-        } if (numberOfGirls == 0){
+        if (numberOfGirls == 0) {
             System.out.println("Sausage party");
+        } else if (sum < 20) {
+            System.out.println("Average party...");
+        } else if (numberOfBoys != numberOfGirls) {
+            System.out.println("Quite cool party!");
+        } else {
+            System.out.println("The party is excellent!");
         }
     }
 }
