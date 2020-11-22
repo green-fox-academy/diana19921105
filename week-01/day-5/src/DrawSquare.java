@@ -5,24 +5,16 @@ public class DrawSquare {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter a number!");
         int number = scanner.nextInt();
-        for (int i = 1; i <= number; i++) {
-            System.out.print("%");
 
-        }
-        System.out.println();
-        for (int i = 1; i <= number - 2; i++) {
+        for (int i = 1; i <= number; i++) {
             for (int j = 1; j <= number; j++) {
-                if (j == 1 || j == number) {
+                if ( i == 1 || i == number || j == 1 || j == number) {
                     System.out.print("%");
                 } else {
                     System.out.print(" ");
                 }
             }
             System.out.println();
-        }
-        for (int i = 1; i <= number; i++) {
-            System.out.print("%");
-
         }
     }
 }
