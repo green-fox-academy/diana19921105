@@ -9,18 +9,22 @@
 // - Print this two dimensional array to the output
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Matrix {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please enter a number!");
+        int number = scanner.nextInt();
 
-        int[][] matrix = new int[4][4];
+        int[][] matrix = new int[number][number];
 
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
                 if (i == j) {
-                    System.out.print("1 ");
+                    System.out.print("1");
                 } else {
-                    System.out.print("0 ");
+                    System.out.print("0");
                 }
             }
             System.out.println();
