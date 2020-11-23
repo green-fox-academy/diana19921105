@@ -12,19 +12,18 @@ import java.util.Arrays;
 
 public class Matrix {
     public static void main(String[] args) {
-        int row = 4;
-        int column = 4;
 
-        int[][] matrix = new int[row][column];
+        int[][] matrix = new int[4][4];
 
-        for (int i = 0; i <= row; i++) {
-            for (int j = 0; j <= column; j++) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
                 if (i == j) {
-                    System.out.println("1");
+                    System.out.print("1 ");
                 } else {
-                    System.out.println("0");
+                    System.out.print("0 ");
                 }
             }
+            System.out.println();
         }
     }
 }
