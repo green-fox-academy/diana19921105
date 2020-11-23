@@ -22,12 +22,12 @@ public class Matrix {
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
                 if (i == j) {
-                    System.out.print("1");
+                    matrix[i][j] = 1;
                 } else {
-                    System.out.print("0");
+                    matrix[i][j] = 0;
                 }
             }
-            System.out.println();
+            System.out.println(Arrays.toString(matrix[i]));
         }
     }
 }
