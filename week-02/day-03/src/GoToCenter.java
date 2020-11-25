@@ -17,12 +17,12 @@ public class GoToCenter {
 
 
         Random random = new Random();
-        
+
 
 
         for (int i = 0; i < 3; i++) {
             int startX = (int) (100 * Math.random());
-            int startY = (int) (100 * Math.random());
+            int startY = 20;
             int endX = startX + 100;
             int endY = startY;
 
