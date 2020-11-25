@@ -19,14 +19,18 @@ public class RainbowBoxFunction {
         List<Color> colors = new ArrayList<>();
         colors = List.of(Color.red, Color.orange, Color.yellow, Color.green, Color.BLUE, Color.MAGENTA, Color.pink);
 
-        int width = 700;
-        int height = 700;
+        int width = WIDTH - 80;
+        int height = HEIGHT - 80;
+        int startY = 30;
+        int startX = 350;
 
         for (int i = 0; i < colors.size(); i++) {
-            graphics.fillRect(350, 10, width, height);
-            width = width - 10;
-            height = height - 10;
             graphics.setColor(colors.get(i));
+            graphics.fillRect(startX, startY, width, height);
+            startY += 20;
+            startX += 20;
+            width = width - 40;
+            height = height - 40;
         }
     }
 
