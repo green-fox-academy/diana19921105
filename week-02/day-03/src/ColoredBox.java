@@ -10,7 +10,7 @@ public class ColoredBox {
 
     public static void mainDraw(Graphics graphics) {
         // Draw a box that has different colored lines on each edge.
-        for (int i = 1; i <= 4; i++) {
+        for (int i = 1; i <= 12; i++) {
             graphics.drawLine(0, 0, 0, 0);
             if (i == 1) {
                 graphics.setColor(Color.BLUE);
