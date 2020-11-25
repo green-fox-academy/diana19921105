@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 
-
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class PurpleSteps {
@@ -19,10 +18,9 @@ public class PurpleSteps {
         for (int i = 0; i < 10; i++) {
             graphics.setColor(Color.PINK);
             graphics.fillRect(startX, startY, width, height);
-            startX += 20;
-            startY += 20;
+            startX += width;
+            startY += height;
         }
-
     }
 
     public static void main(String[] args) {
