@@ -10,28 +10,19 @@ public class ColoredBox {
 
     public static void mainDraw(Graphics graphics) {
         // Draw a box that has different colored lines on each edge.
-        for (int i = 1; i <= 12; i++) {
-            graphics.drawLine(0, 0, 0, 0);
-            if (i == 1) {
-                graphics.setColor(Color.BLUE);
-                graphics.drawLine(20, 20, 20, 300);
-            }
-            if (i == 2) {
-                graphics.setColor(Color.GREEN);
-                graphics.drawLine(20, 20, 280, 20);
-            }
-            if (i == 3) {
-                graphics.setColor(Color.RED);
-                graphics.drawLine(280, 300, 280, 20);
-            }
-            if (i == 4) {
-                graphics.setColor(Color.black);
-                graphics.drawLine(20, 300, 280, 300);
-            }
-        }
+
+        graphics.drawLine(20, 20, 20, 300);
+        graphics.setColor(Color.BLACK);
+
+        graphics.drawLine(20, 20, 280, 20);
+        graphics.setColor(Color.RED);
+
+        graphics.drawLine(280, 300, 280, 20);
+        graphics.setColor(Color.MAGENTA);
+
+        graphics.drawLine(20, 300, 280, 300);
+        graphics.setColor(Color.GREEN);
     }
-
-
 
 
     public static void main(String[] args) {
