@@ -9,7 +9,7 @@ public class Mozaik {
     static int HEIGHT = 640;
 
     public static void mainDraw(Graphics graphics) {
-        // Fill the canvas with a checkerboard pattern.
+       
         int startX;
         int startY;
         int width = 20;
@@ -20,7 +20,6 @@ public class Mozaik {
             for (int j = 0; j < height; j++) {
                 startX = i * width;
                 startY = j * height;
-
 
                 int r = (int) (100 * Math.random());
                 int g = (int) (100 * Math.random());
