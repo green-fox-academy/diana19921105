@@ -7,15 +7,15 @@ import java.util.List;
 
 public class Doubled {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         // Create a method that decrypts the duplicated-chars.txt
         decrypt("doubled.txt");
 
     }
 
-    private static void decrypt(String fileName) throws IOException {
+    private static void decrypt(String fileName) {
         try {
-            Path filePath = Paths.get("doubled.txt");
+            Path filePath = Paths.get(fileName);
             Path destination = Paths.get("dest.txt");
             List<String> lines = Files.readAllLines(filePath);
             StringBuilder text = new StringBuilder();
@@ -28,7 +28,7 @@ public class Doubled {
             }
 
             Files.write(destination, Collections.singleton(text));
-        }catch (IOException exception) {
+        } catch (IOException exception) {
             System.err.println("Could not decrypt the file");
         }
     }
