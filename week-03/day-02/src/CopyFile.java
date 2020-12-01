@@ -18,8 +18,8 @@ public class CopyFile {
     }
 
     private static boolean copyFile(String original, String destination) throws IOException {
-        Path filePath = Paths.get("original.txt");
-        Path copyFile = Paths.get("copy.txt");
+        Path filePath = Paths.get(original);
+        Path copyFile = Paths.get(destination);
 
         try {
         List<String> lines = Files.readAllLines(filePath);
