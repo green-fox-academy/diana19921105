@@ -16,18 +16,19 @@ import java.io.IOException;
 public class WriteMultipleLines {
     public static void main(String[] args) {
         int numberOfLines = 5;
+        String word = "apple";
 
         try{
             FileWriter writer = new FileWriter("apple.txt");
             BufferedWriter line = new BufferedWriter(writer);
 
             for (int i = 0; i < numberOfLines; i++) {
-               line.write("apple");
+               line.write(word);
                line.newLine();
             }
             line.close();
         } catch (IOException e) {
-            e.printStackTrace();
+           System.err.println("");
         }
 
 
