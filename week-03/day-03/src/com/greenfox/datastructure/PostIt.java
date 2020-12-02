@@ -1,4 +1,4 @@
-package com.greenfox.postit;
+package com.greenfox.datastructure;
 
 class PostIt {
     String backgroundColor;

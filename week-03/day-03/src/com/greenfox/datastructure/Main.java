@@ -1,4 +1,4 @@
-package com.greenfox.postit;
+package com.greenfox.datastructure;
 
 public class Main {
     public static void main(String[] args) {
