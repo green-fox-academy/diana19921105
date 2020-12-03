@@ -1,3 +1,5 @@
+package com.greenfox.Farm;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,9 +13,13 @@ public class Farm {
     }
 
     public List<Animal> breed() {
-        if (this.slot != 0) {
+        if (animals.size() < slot) {
             Animal animal = new Animal();
             animals.add(animal);
+            slot--;
+        }
+        else {
+            System.out.println("Farm is full with animals!");
         }
         return animals;
     }
@@ -24,6 +30,7 @@ public class Farm {
             if (animals.get(i).hunger < minHunger) {
                 minHunger = animals.get(i).hunger;
                 animals.remove(animals.get(i));
+                slot++;
             }
         }
         return animals;
