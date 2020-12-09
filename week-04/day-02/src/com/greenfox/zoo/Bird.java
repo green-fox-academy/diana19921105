@@ -1,9 +1,9 @@
 package com.greenfox.zoo;
 
-public class Bird extends Animal implements LayingEggs{
+public class Bird extends Animal implements LayingEggs {
 
     Bird(String name) {
-        this.name = getName(name);
+        this.name = name;
     }
 
     public boolean hasFeathers() {
@@ -12,6 +12,6 @@ public class Bird extends Animal implements LayingEggs{
 
     @Override
     public String layingEggs() {
-         return "laying eggs";
+        return "laying eggs";
     }
 }

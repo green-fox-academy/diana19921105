@@ -7,7 +7,7 @@ public class Animal {
     protected String color;
     protected int legs;
 
-    public String getName(String name) {
+    public String getName() {
         return name;
     }
 

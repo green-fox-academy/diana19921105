@@ -1,10 +1,8 @@
 package com.greenfox.zoo;
 
-public class Reptile extends Animal implements LayingEggs{
-
-
+public class Reptile extends Animal implements LayingEggs {
     Reptile(String name) {
-        this.name = getName(name);
+        this.name = name;
     }
 
     @Override
