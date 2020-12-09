@@ -5,7 +5,7 @@ import com.greenfox.zoo.Animal;
 public class Bird extends Animal implements Flyable {
 
     public Bird(String name) {
-        this.name = getName(name);
+        this.name = name;
     }
 
     @Override
