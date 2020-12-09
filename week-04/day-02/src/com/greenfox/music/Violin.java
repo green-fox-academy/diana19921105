@@ -3,19 +3,18 @@ package com.greenfox.music;
 public class Violin extends StringedInstrument {
 
     public Violin(String name, int numberOfStrings) {
-        this.numberOfStrings = numberOfStrings;
-        this.name = name;
-    }
-
-    public Violin() {
-        super();
-        name = "Violin";
-        numberOfStrings = 4;
+       super(name, numberOfStrings);
     }
 
     public Violin(int numberOfStrings) {
         this.numberOfStrings = numberOfStrings;
     }
+
+    public Violin() {
+        name = "Violin";
+        numberOfStrings = 4;
+    }
+
 
     @Override
     public void sound() {
@@ -23,7 +22,7 @@ public class Violin extends StringedInstrument {
     }
 
     public void play() {
-        System.out.println(name + ", a " + numberOfStrings + "- stringed instrument that goes ");
+        System.out.print(name + ", a " + numberOfStrings + "- stringed instrument that goes ");
         this.sound();
     }
 }

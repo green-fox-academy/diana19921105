@@ -3,8 +3,7 @@ package com.greenfox.music;
 public class BassGuitar extends StringedInstrument {
 
     public BassGuitar(String name, int numberOfStrings) {
-        this.numberOfStrings = numberOfStrings;
-        this.name = name;
+        super(name, numberOfStrings);
     }
 
     public BassGuitar() {
@@ -19,7 +18,7 @@ public class BassGuitar extends StringedInstrument {
     }
 
     public void play() {
-        System.out.println(name + ", a " + numberOfStrings + "- stringed instrument that goes ");
+        System.out.print(name + ", a " + numberOfStrings + "- stringed instrument that goes ");
         this.sound();
     }
 }

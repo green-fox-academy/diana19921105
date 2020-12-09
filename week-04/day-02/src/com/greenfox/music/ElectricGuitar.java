@@ -1,6 +1,6 @@
 package com.greenfox.music;
 
-public class ElectricGuitar extends StringedInstrument implements Play{
+public class ElectricGuitar extends StringedInstrument{
 
     public ElectricGuitar(String name, int numberOfStrings) {
        super(name, numberOfStrings);
@@ -18,7 +18,7 @@ public class ElectricGuitar extends StringedInstrument implements Play{
     }
 
     public void play() {
-        System.out.println(name + ", a " + numberOfStrings + "- stringed instrument that goes ");
+        System.out.print(name + ", a " + numberOfStrings + "- stringed instrument that goes ");
         this.sound();
     }
 }
