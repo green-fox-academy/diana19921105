@@ -1,0 +1,77 @@
+.login {
+    background: white;
+    text-align: center;
+    border: 1px solid grey;
+    border-radius: 8px;
+    margin: auto;
+    width: 40%;
+}
+
+.label {
+    color: black;
+    padding: 10px;
+    margin-left: -300px;
+    font-size: 20px;
+    font-family: "Adobe Arabic", serif;
+}
+
+h1{
+    font-family: "Adobe Arabic", serif;
+    font-size: 40px;
+    margin-left: -150px;
+}
+
+button {
+    background-color: black;
+    border: none;
+    border-radius: 50px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-family: "Candara Light", serif;
+    font-size: 20px;
+    font-weight: inherit;
+    opacity: 0.8;
+    transition: 0.3s;
+    cursor: pointer;
+    margin-bottom: 20px;
+    width: 25%;
+    margin-left: -50%;
+}
+
+button:hover {
+    opacity: 1
+}
+
+h6 {
+    font-family: "Adobe Arabic", serif;
+    font-size: 16px;
+    margin-left: -40px;
+    margin-top: 10px;
+}
+
+#password {
+    border: 1px solid grey;
+    border-radius: 5px;
+    width: 200px;
+    padding: 10px;
+    margin-left: -170px;
+    /*background-image: url('view.png');*/
+}
+
+#name {
+    border: 1px solid grey;
+    border-radius: 5px;
+    width: 200px;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-left: -170px;
+}
+
+#name:hover {
+    border: 2px solid green;
+    box-shadow: lightgreen;
+}
+
