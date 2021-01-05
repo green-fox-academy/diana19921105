@@ -1,0 +1,120 @@
+.signup {
+    background: white;
+    text-align: left;
+    border: 1px solid grey;
+    border-radius: 8px;
+    margin: auto;
+    width: 50%;
+}
+
+.label {
+    color: black;
+    padding: 10px;
+    margin-left: -300px;
+    font-size: 20px;
+    font-family: "Adobe Arabic", serif;
+}
+
+h1 {
+    font-family: "Adobe Devanagari", serif;
+    font-size: 40px;
+    margin-left: 50px;
+}
+
+
+.signMeUp {
+    background-color: darkcyan;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-family: "Candara Light", serif;
+    font-weight: bolder;
+    font-size: 20px;
+    margin-left: 50px;
+    margin-bottom: 50px;
+}
+
+span {
+    padding: 20px;
+    background: rgb(172, 170, 170);
+    border-radius: 50%;
+    position: relative;
+    left: 42%;
+    top: -80px;
+    box-shadow: 0 3px rgba(207, 204, 204, 0.06);
+
+}
+
+.social-media button {
+    display: block;
+    position: relative;
+    left: 55%;
+    top: -160px;
+    margin-bottom: 25px;
+    font-size: 20px;
+    width: 250px;
+    padding: 10px;
+}
+
+#name {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid darkcyan;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+#email {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid darkgray;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+#password {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid darkgray;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+#retypePassword {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid darkgray;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+#facebook {
+    background-color: darkblue;
+    border: none;
+    color: white;
+}
+
+#twitter {
+    background-color: lightblue;
+    color: white;
+    border: none;
+}
+
+#google {
+    background-color: indianred;
+    color: white;
+    border: none;
+
+}
+
+.vertical-right {
+    position: relative;
+}
