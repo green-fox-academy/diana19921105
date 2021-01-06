@@ -1,16 +1,19 @@
 package com.greenfoxacademy.springstart.controllers;
 
-public class Greeting {
-    Long id;
-    String content;
 
-    public Greeting(Long id, String content) {
-        this.id = id;
+import java.util.concurrent.atomic.AtomicLong;
+
+public class Greeting {
+    private Long greetingCount;
+    private String content;
+
+    public Greeting(Long greetingCount, String content) {
+        this.greetingCount = greetingCount;
         this.content = content;
     }
 
-    public Long getId() {
-        return id;
+    public Long getGreetingCount() {
+        return greetingCount;
     }
 
     public String getContent() {
