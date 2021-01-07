@@ -8,13 +8,15 @@ public class BankAccount {
     private String animalType;
     private String currency;
     private boolean isKing;
+    private boolean isBadGuy;
 
-    public BankAccount(String name, Double balance, String animalType, Boolean isKing) {
+    public BankAccount(String name, Double balance, String animalType, Boolean isKing, Boolean isBadGuy) {
         this.name = name;
         this.balance = balance;
         this.animalType = animalType;
         this.currency = "Zebra";
         this.isKing = isKing;
+        this.isBadGuy = isBadGuy;
     }
 
     public String getName() {
@@ -37,6 +39,10 @@ public class BankAccount {
         return isKing;
     }
 
+    public boolean isBadGuy() {
+        return isBadGuy;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -57,10 +63,18 @@ public class BankAccount {
     }
 
     public String getStyle() {
-        if(isKing) {
+        if (isKing) {
             return "king";
         } else {
             return "basic";
+        }
+    }
+
+    public String badOrGood() {
+        if (isBadGuy) {
+            return "bad guy";
+        } else {
+            return "good one";
         }
     }
 }

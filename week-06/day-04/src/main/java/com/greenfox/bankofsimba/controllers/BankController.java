@@ -16,16 +16,16 @@ public class BankController {
 
     public BankController() {
         bankAccountList = new ArrayList<>();
-        bankAccountList.add(new BankAccount("Nala", (double) 1500L, "lion"));
-        bankAccountList.add(new BankAccount("Zazu", (double) 1L, "bird"));
-        bankAccountList.add(new BankAccount("Mufasa", (double) 10000L, "lion"));
-        bankAccountList.add(new BankAccount("Rafiki", (double) 2500L, "gorilla"));
-        bankAccountList.add(new BankAccount("Timon", (double) 6500L, "meerkat"));
+        bankAccountList.add(new BankAccount("Nala", (double) 1500L, "lion", false, false));
+        bankAccountList.add(new BankAccount("Zazu", (double) 1L, "bird", false, false));
+        bankAccountList.add(new BankAccount("Mufasa", (double) 10000L, "lion", true, false));
+        bankAccountList.add(new BankAccount("Rafiki", (double) 2500L, "gorilla", false, true));
+        bankAccountList.add(new BankAccount("Timon", (double) 6500L, "meerkat", false, true));
     }
 
     @GetMapping("/show")
     public String show(Model model) {
-        BankAccount simba = new BankAccount("Simba", (double) 2000L, "lion");
+        BankAccount simba = new BankAccount("Simba", (double) 2000L, "lion", false, false);
         model.addAttribute("name", simba.getName());
         model.addAttribute("balance", simba.getBalanceFormatted());
         model.addAttribute("type", simba.getAnimalType());

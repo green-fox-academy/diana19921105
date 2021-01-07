@@ -5,3 +5,38 @@
 .basic {
     color: black;
 }
+
+.bad {
+    background-color: grey;
+}
+
+.good {
+    background-color: pink;
+}
+
+td, th {
+    border: 1px solid #999;
+    text-align: left;
+    width: 200px;
+    length: 100px;
+    padding: 10px;
+}
+
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: gray;
+    font-size: x-large;
+    font-weight: inherit;
+    font-family: "Adobe Devanagari", serif;
+    background-color: indianred;
+    color: white;
+    border-bottom: 3px solid #999999;
+}
+
+tbody {
+    font-family: "Adobe Devanagari", Serif;
+    font-size: medium;
+    font-weight: normal;
+    color: crimson;
+}

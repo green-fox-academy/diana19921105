@@ -12,6 +12,7 @@
         <th>Name</th>
         <th>Balance</th>
         <th>Animal Type</th>
+        <th>Bad or Good</th>
         <th>Index</th>
     </tr>
     </thead>
@@ -19,6 +20,7 @@
         <td th:text="${bankAccount.getName()}"/>
         <td th:text="${bankAccount.getBalanceFormatted()}"></td>
         <td th:text="${bankAccount.getAnimalType()}"/>
+        <td th:class="${bankAccount.badOrGood()}" th:text="${bankAccount.badOrGood()}"/>
         <td th:text="${bankAccountStat.index}"/>
     </tr>
 </table>
