@@ -7,12 +7,14 @@ public class BankAccount {
     private Double balance;
     private String animalType;
     private String currency;
+    private boolean isKing;
 
-    public BankAccount(String name, Double balance, String animalType) {
+    public BankAccount(String name, Double balance, String animalType, Boolean isKing) {
         this.name = name;
         this.balance = balance;
         this.animalType = animalType;
         this.currency = "Zebra";
+        this.isKing = isKing;
     }
 
     public String getName() {
@@ -29,6 +31,10 @@ public class BankAccount {
 
     public String getCurrency() {
         return currency;
+    }
+
+    public boolean isKing() {
+        return isKing;
     }
 
     @Override
@@ -48,5 +54,13 @@ public class BankAccount {
 
     public String getBalanceFormatted() {
         return String.format("%.2f", balance) + " " + getCurrency();
+    }
+
+    public String getStyle() {
+        if(isKing) {
+            return "king";
+        } else {
+            return "basic";
+        }
     }
 }
