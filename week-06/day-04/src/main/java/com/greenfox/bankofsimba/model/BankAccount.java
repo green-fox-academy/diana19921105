@@ -8,11 +8,11 @@ public class BankAccount {
     private String animalType;
     private String currency;
 
-    public BankAccount(String name, Double balance, String animalType, String currency) {
+    public BankAccount(String name, Double balance, String animalType) {
         this.name = name;
         this.balance = balance;
         this.animalType = animalType;
-        this.currency = currency;
+        this.currency = "Zebra";
     }
 
     public String getName() {
@@ -47,6 +47,6 @@ public class BankAccount {
     }
 
     public String getBalanceFormatted() {
-        return String.format("%.2f", balance);
+        return String.format("%.2f", balance) + " " + getCurrency();
     }
 }
