@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf Exercise #</title>
+    <link rel="stylesheet" th:href="@{/style.css}"/>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<h1>Fields of BankAccount</h1>
+<h2>Hello You! These are the fields of a BankAccount</h2>
+
+Name: <span th:text="${name}"></span>
+<br>
+Balance: <span th:text="${balance}"></span>
+<br>
+Type: <span th:text="${type}"></span>
+
+</body>
+</html>
