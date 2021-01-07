@@ -9,11 +9,22 @@
 <h1>Fields of BankAccount</h1>
 <h2>Hello You! These are the fields of a BankAccount</h2>
 
-Name: <span th:text="${name}"></span>
-<br>
-Balance: <span th:text="${balance}"></span>
-<br>
-Type: <span th:text="${type}"></span>
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Balance</th>
+        <th>Type</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td th:text="${name} "></td>
+        <td th:text="${balance} + '.00 Zebra' "></td>
+        <td th:text="${type} "></td>
+    </tr>
+    </tbody>
+</table>
 
 </body>
 </html>
