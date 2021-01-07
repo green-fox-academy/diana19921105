@@ -7,10 +7,19 @@
 </head>
 <body>
 <table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Balance</th>
+        <th>Animal Type</th>
+        <th>Index</th>
+    </tr>
+    </thead>
     <tr th:each="bankAccount: ${accountList}">
         <td th:text="${bankAccount.getName()}"/>
         <td th:text="${bankAccount.getBalanceFormatted()}"></td>
         <td th:text="${bankAccount.getAnimalType()}"/>
+        <td th:text="${bankAccountStat.index}"/>
     </tr>
 </table>
 </body>
