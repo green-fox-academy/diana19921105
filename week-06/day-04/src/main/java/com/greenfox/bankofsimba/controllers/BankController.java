@@ -4,10 +4,10 @@ import com.greenfox.bankofsimba.model.BankAccount;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class BankController {
@@ -45,4 +45,10 @@ public class BankController {
         return "multipleaccounts";
     }
 
+    @GetMapping("/raise-the-balance")
+    public String raiseTheBalance(Model model) {
+        bankAccountList.forEach(BankAccount::raiseTheBalance);
+        model.addAttribute("accountList", bankAccountList);
+        return "multipleaccounts";
+    }
 }

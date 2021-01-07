@@ -48,9 +48,12 @@ public class BankAccount {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BankAccount that = (BankAccount) o;
-        return getName().equals(that.getName()) &&
-                Objects.equals(getBalance(), that.getBalance()) &&
-                getAnimalType().equals(that.getAnimalType());
+        return isKing() == that.isKing() &&
+                isBadGuy() == that.isBadGuy() &&
+                getName().equals(that.getName()) &&
+                getBalance().equals(that.getBalance()) &&
+                getAnimalType().equals(that.getAnimalType()) &&
+                getCurrency().equals(that.getCurrency());
     }
 
     @Override
@@ -75,6 +78,14 @@ public class BankAccount {
             return "bad guy";
         } else {
             return "good one";
+        }
+    }
+
+    public void raiseTheBalance() {
+        if (isKing()) {
+            balance += 100;
+        } else {
+            balance += 10;
         }
     }
 }
