@@ -1,0 +1,61 @@
+header > h1 {
+    color: crimson;
+    font-family: "Roboto Light", serif;
+    font-weight: bold;
+    font-size: xx-large;
+}
+
+header > hr {
+    border: 5px solid pink;
+}
+
+.buttons {
+    background-color: grey;
+    text-align: center;
+    padding: 12px 32px;
+}
+
+.buttons > button {
+    color: white;
+    text-align: center;
+    padding: 12px 24px;
+    background-color: hotpink;
+    border-radius: 10px;
+    border: none;
+}
+
+td, th {
+    border: 1px solid beige;
+    border-collapse: collapse;
+    text-align: center;
+    width: 200px;
+    length: 100px;
+    padding: 10px;
+}
+
+
+.center {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 40px;
+}
+
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: gray;
+    font-size: x-large;
+    font-weight: inherit;
+    font-family: "Adobe Devanagari", serif;
+    background-color: indianred;
+    color: white;
+    border-bottom: 3px solid #999999;
+}
+
+tbody {
+    font-family: "Roboto Light", Serif;
+    font-size: medium;
+    font-weight: bold;
+
+    color: crimson;
+}
