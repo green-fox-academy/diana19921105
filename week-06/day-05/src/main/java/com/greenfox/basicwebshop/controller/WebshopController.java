@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
+import java.util.OptionalDouble;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Controller
 public class WebshopController {
@@ -18,6 +21,7 @@ public class WebshopController {
     public WebshopController() {
         items = new ArrayList<>();
         items.add(new ShopItem("Nike", "Running shoe", (double) 1000L, 0));
+        items.add(new ShopItem("Running shoes", "Nike shoe in different colors", (double) 1000L, 10));
         items.add(new ShopItem("Printer", "Some HP printer that makes its job", (double) 3000L, 10));
         items.add(new ShopItem("Coca cola", "Delicious cola", (double) 10L, 100));
         items.add(new ShopItem("Wokin", "Chicken with fried rice and WOKIN sauce", (double) 119L, 1));
@@ -44,6 +48,49 @@ public class WebshopController {
                 .sorted(Comparator.comparing(ShopItem::getPrice))
                 .collect(Collectors.toList()));
         return "index";
+    }
+
+    @GetMapping("/contains-nike")
+    public String containsNike(Model model) {
+        model.addAttribute("items", items.stream()
+                .filter(item -> item.getName().toLowerCase().contains("nike") || item.getDescription().toLowerCase().contains("nike"))
+                .collect(Collectors.toList()));
+
+        return "index";
+    }
+
+    @GetMapping("/average-stock")
+    public String averageStock(Model model) {
+        OptionalDouble optionalDouble = getAverage();
+        String average = "Average Stock: ";
+        if (optionalDouble.isPresent()) {
+            model.addAttribute("average", average + String.format("%.1f", optionalDouble.getAsDouble()));
+        }
+        return "average";
+    }
+
+    @GetMapping("/most-expensive")
+    public String getMostExpensive(Model model) {
+        Optional<String> mostExpensiveName = getMostExpensive();
+        String string = "The most expensive item is: ";
+        if (mostExpensiveName.isPresent()) {
+            model.addAttribute("mostExpensiveName", string + mostExpensiveName.get());
+        }
+        return "average";
+    }
+
+    private OptionalDouble getAverage() {
+        return items.stream()
+                .mapToDouble(ShopItem::getQuantity)
+                .average();
+    }
+
+    private Optional<String> getMostExpensive() {
+        Optional<String> name = items.stream().
+                max(Comparator.comparing(ShopItem::getPrice))
+                .map(ShopItem::getName);
+
+        return name;
     }
 
 }

@@ -30,38 +30,25 @@
         <button type="submit"> Contains nike</button>
     </form>
 
-    <form th:class="form" action="/average-stock">
+    <form th:class="form" action="/average-stock" method="get">
         <button type="submit"> Average stock</button>
     </form>
 
-    <form th:class="form" action="/most-expensive">
+    <form th:class="form" action="/most-expensive" method="get">
         <button type="submit"> Most expensive available</button>
     </form>
 
 </div>
 
-<div>
-    <table th:class="center">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Quantity</th>
-        </tr>
-        </thead>
+<h2>
+    <span th:text="${average}">
+    </span>
+</h2>
 
-        <tbody>
-        <tr th:each="item: ${items}">
-            <td th:text="${item.getName()}"/>
-            <td th:text="${item.getDescription()}"></td>
-            <td th:text="${item.getPriceFormatted()}"/>
-            <td th:text="${item.getQuantity()}"/>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
+<h2>
+    <span th:text="${mostExpensiveName}">
+    </span>
+</h2>
 
 </body>
 </html>

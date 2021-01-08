@@ -1,8 +1,20 @@
+body {
+    padding: 0px 30px 0px 30px;
+}
+
 header > h1 {
     color: crimson;
     font-family: "Roboto Light", serif;
     font-weight: bold;
     font-size: xx-large;
+}
+
+h1 > a{
+    color: crimson;
+    font-family: "Roboto Light", serif;
+    font-weight: bold;
+    font-size: xx-large;
+    text-decoration: none;
 }
 
 header > hr {
@@ -76,9 +88,16 @@ thead {
 }
 
 tbody {
-    font-family: "Roboto Light", Serif;
+    font-family: "Roboto Light", serif;
     font-size: medium;
     font-weight: bold;
 
     color: crimson;
+}
+
+h2 > span {
+    font-family: "Roboto Light", serif;
+    font-weight: bold;
+    font-size: 50px;
+    color: darkmagenta;
 }
