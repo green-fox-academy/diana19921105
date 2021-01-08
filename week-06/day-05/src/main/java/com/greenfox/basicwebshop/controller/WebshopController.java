@@ -4,6 +4,8 @@ import com.greenfox.basicwebshop.model.ShopItem;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -11,7 +13,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.OptionalDouble;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Controller
 public class WebshopController {
@@ -79,6 +80,14 @@ public class WebshopController {
         return "average";
     }
 
+    @PostMapping("/search")
+    public String search(@RequestParam String search, Model model) {
+        List<ShopItem> collect = searchItem(search);
+        model.addAttribute("items", collect);
+
+        return "index";
+    }
+
     private OptionalDouble getAverage() {
         return items.stream()
                 .mapToDouble(ShopItem::getQuantity)
@@ -91,6 +100,14 @@ public class WebshopController {
                 .map(ShopItem::getName);
 
         return name;
+    }
+
+    private List<ShopItem> searchItem(String str) {
+        List<ShopItem> collect = items.stream()
+                .filter(i -> i.getName().toLowerCase().equals(str) || i.getDescription().toLowerCase().equals(str))
+                .collect(Collectors.toList());
+
+        return collect;
     }
 
 }

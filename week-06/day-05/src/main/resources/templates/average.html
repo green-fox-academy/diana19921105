@@ -40,6 +40,18 @@
 
 </div>
 
+<form action="/search" method="post">
+    <div>
+        <input type="text" name="search" placeholder="...something like nike">
+        <button type="submit">
+            <a th:href="@{/webshop}">
+
+            </a>
+            Search </button>
+    </div>
+</form>
+
+
 <h2>
     <span th:text="${average}">
     </span>
