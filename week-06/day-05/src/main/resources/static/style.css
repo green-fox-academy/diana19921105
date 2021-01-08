@@ -13,6 +13,18 @@ header > hr {
     background-color: grey;
     text-align: center;
     padding: 12px 32px;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form {
+    background-color: grey;
+    text-align: center;
+    padding: 12px 32px;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .buttons > button {
@@ -22,6 +34,17 @@ header > hr {
     background-color: hotpink;
     border-radius: 10px;
     border: none;
+    display: inline-block;
+}
+
+.form > button {
+    color: white;
+    text-align: center;
+    padding: 12px 24px;
+    background-color: hotpink;
+    border-radius: 10px;
+    border: none;
+    display: inline-block;
 }
 
 td, th {

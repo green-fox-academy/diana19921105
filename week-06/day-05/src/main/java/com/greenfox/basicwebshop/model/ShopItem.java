@@ -7,12 +7,14 @@ public class ShopItem {
     private String description;
     private Double price;
     private Integer quantity;
+    private String currency;
 
     public ShopItem(String name, String description, Double price, Integer quantity) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.quantity = quantity;
+        this.currency = "Kč";
     }
 
     public String getName() {
@@ -31,6 +33,10 @@ public class ShopItem {
         return quantity;
     }
 
+    public String getCurrency() {
+        return currency;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -45,5 +51,9 @@ public class ShopItem {
     @Override
     public int hashCode() {
         return Objects.hash(getName(), getDescription(), getPrice(), getQuantity());
+    }
+
+    public String getPriceFormatted() {
+        return String.format("%.2f", price) + " " + getCurrency();
     }
 }

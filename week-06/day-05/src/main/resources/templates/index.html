@@ -13,14 +13,30 @@
     <br>
 </header>
 
-<div th:class="buttons">
+    <div th:class="buttons">
 
-    <button type="submit"> Only available</button>
-    <button type="submit"> Cheapest first</button>
-    <button type="submit"> Contains nike</button>
-    <button type="submit"> Average stock</button>
-    <button type="submit"> Most expensive available</button>
-</div>
+        <form th:class="form" action="/only-available" method="get">
+            <button type="submit"> Only available</button>
+        </form>
+
+        <form th:class="form" action="/cheapest-first", method="get">
+
+            <button type="submit"> Cheapest first</button>
+        </form>
+
+        <form th:class="form" action="/only-available">
+            <button type="submit"> Contains nike</button>
+        </form>
+
+        <form th:class="form" action="/only-available">
+            <button type="submit"> Average stock</button>
+        </form>
+
+        <form th:class="form" action="/only-available">
+            <button type="submit"> Most expensive available</button>
+        </form>
+
+    </div>
 
 <div>
     <table th:class="center">
@@ -37,7 +53,7 @@
         <tr th:each="item: ${items}">
             <td th:text="${item.getName()}"/>
             <td th:text="${item.getDescription()}"></td>
-            <td th:text="${item.getPrice()}"/>
+            <td th:text="${item.getPriceFormatted()}"/>
             <td th:text="${item.getQuantity()}"/>
         </tr>
         </tbody>
