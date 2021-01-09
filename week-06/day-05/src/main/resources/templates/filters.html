@@ -8,17 +8,20 @@
 <body>
 <header>
     <div>
-        <h1>
-            <a th:href="@{/webshop}"> My Shop </a>
-            <a th:class="more-filters" th:href="@{/more-filters}"> More Filters >> </a>
+        <h1><a th:href="@{/webshop}"> My Shop
+        </a>
         </h1>
-
+        <h2>
+            <a th:href="@{/more-filters}"> More Filters >> </a>
+        </h2>
     </div>
+
     <hr>
     <br>
 </header>
 
 <div th:class="buttons">
+
     <div th:class="tags">
 
         <a th:class="filter" th:href="@{/shop-items?type=DOG}"> Dog </a>
@@ -27,12 +30,11 @@
 
         <a th:class="filter" th:href="@{/shop-items?type=ACCESSORIES}"> Accessories </a>
 
-        <a th:class="filter" th:href="@{/price-in-eur}"> Euro </a>
+        <a th:class="filter" th:href="@{/shop-items?type=ACCESSORIES}"> Accessories </a>
 
-        <a th:class="filter" th:href="@{/price-in-original}"> Original currency </a>
+        <a th:class="filter" th:href="@{/shop-items?type=ACCESSORIES}"> Accessories </a>
 
     </div>
-
 </div>
 
 <form action="/search" method="post">
@@ -46,28 +48,6 @@
         </button>
     </div>
 </form>
-
-<div>
-    <table th:class="center">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Quantity</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <tr th:each="item: ${items}">
-            <td th:text="${item.getName()}"/>
-            <td th:text="${item.getDescription()}"></td>
-            <td th:text="${item.getPriceFormatted()}"/>
-            <td th:text="${item.getQuantity()}"/>
-        </tr>
-        </tbody>
-    </table>
-</div>
 
 
 </body>

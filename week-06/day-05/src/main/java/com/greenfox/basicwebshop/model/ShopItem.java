@@ -7,14 +7,16 @@ public class ShopItem {
     private String description;
     private Double price;
     private Integer quantity;
-    private String currency;
+    private Currency currency;
+    private Type type;
 
-    public ShopItem(String name, String description, Double price, Integer quantity) {
+    public ShopItem(String name, String description, Double price, Integer quantity, Currency currency, Type type) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.quantity = quantity;
-        this.currency = "Kč";
+        this.currency = currency;
+        this.type = type;
     }
 
     public String getName() {
@@ -33,8 +35,12 @@ public class ShopItem {
         return quantity;
     }
 
-    public String getCurrency() {
+    public Currency getCurrency() {
         return currency;
+    }
+
+    public Type getType() {
+        return type;
     }
 
     @Override

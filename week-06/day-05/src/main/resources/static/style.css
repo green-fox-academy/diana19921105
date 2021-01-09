@@ -17,46 +17,46 @@ h1 > a{
     text-decoration: none;
 }
 
+h2 > a{
+    color: crimson;
+    font-family: "Roboto Light", serif;
+    font-weight: bold;
+    font-size: xx-large;
+    text-decoration: none;
+    margin-left: 80%;
+}
+
 header > hr {
-    border: 5px solid pink;
+    border: 3px solid pink;
+}
+
+.more-filters {
+  position: absolute;
+    right: 40px;
 }
 
 .buttons {
-    background-color: grey;
     text-align: center;
-    padding: 12px 32px;
     display: inline-block;
     margin-left: auto;
     margin-right: auto;
+    padding: 12px 32px
 }
 
-.form {
-    background-color: grey;
-    text-align: center;
-    padding: 12px 32px;
-    display: inline-block;
-    margin-left: auto;
-    margin-right: auto;
+.buttons {
+    margin-left: 20%;
 }
 
-.buttons > button {
-    color: white;
-    text-align: center;
-    padding: 12px 24px;
+.filter {
     background-color: hotpink;
-    border-radius: 10px;
-    border: none;
-    display: inline-block;
-}
-
-.form > button {
     color: white;
-    text-align: center;
     padding: 12px 24px;
-    background-color: hotpink;
-    border-radius: 10px;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 20px;
     border: none;
-    display: inline-block;
+    text-align: center;
+    margin-right: 10px;
 }
 
 td, th {
@@ -100,4 +100,40 @@ h2 > span {
     font-weight: bold;
     font-size: 50px;
     color: darkmagenta;
+}
+
+input {
+    width: 500px;
+    border-color: black;
+    border-width: 1px;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 10px;
+
+}
+
+input:hover {
+    border-color: indianred;
+    border-width: 2px;
+    border-radius: 10px;
+}
+
+#search {
+    margin-left: 20px;
+    padding: 12px 24px;
+    background-color: lightpink;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    border: none;
+}
+#search:hover {
+    background-color: pink;
+    box-shadow: 0 5px #666;
+}
+
+#search:active {
+    background-color: hotpink;
+    box-shadow: 0 2px lightgray;
+    transform: translateY(10px);
 }
