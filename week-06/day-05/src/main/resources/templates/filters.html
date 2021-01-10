@@ -8,12 +8,10 @@
 <body>
 <header>
     <div>
-        <h1><a th:href="@{/webshop}"> My Shop
-        </a>
+        <h1>
+            <a th:href="@{/webshop}"> My Shop </a>
+            <a th:class="more-filters" th:href="@{/more-filters}"> More Filters >> </a>
         </h1>
-        <h2>
-            <a th:href="@{/more-filters}"> More Filters >> </a>
-        </h2>
     </div>
 
     <hr>
@@ -24,15 +22,15 @@
 
     <div th:class="tags">
 
-        <a th:class="filter" th:href="@{/shop-items?type=DOG}"> Dog </a>
+        <a th:class="filter" th:href="@{/shop-items?type=CLOTHES_AND_SHOES}"> Clothes and shoes </a>
 
-        <a th:class="filter" th:href="@{/shop-items?type=CAT}"> Cat </a>
+        <a th:class="filter" th:href="@{/shop-items?type=ELECTRONICS}"> Electronics </a>
 
-        <a th:class="filter" th:href="@{/shop-items?type=ACCESSORIES}"> Accessories </a>
+        <a th:class="filter" th:href="@{/shop-items?type=BEVERAGES_AND_SNACKS}"> Beverages and snacks </a>
 
-        <a th:class="filter" th:href="@{/shop-items?type=ACCESSORIES}"> Accessories </a>
+        <a th:class="filter" th:href="@{/price-in-eur}"> Euro </a>
 
-        <a th:class="filter" th:href="@{/shop-items?type=ACCESSORIES}"> Accessories </a>
+        <a th:class="filter" th:href="@{/price-in-original}"> Original currency </a>
 
     </div>
 </div>

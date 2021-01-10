@@ -38,14 +38,11 @@ header > hr {
 .buttons {
     text-align: center;
     display: inline-block;
-    margin-left: auto;
+    margin-left: 10%;
     margin-right: auto;
     padding: 12px 32px
 }
 
-.buttons {
-    margin-left: 20%;
-}
 
 .filter {
     background-color: hotpink;

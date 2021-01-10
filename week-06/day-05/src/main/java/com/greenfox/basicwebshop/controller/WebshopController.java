@@ -15,6 +15,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.OptionalDouble;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @Controller
@@ -26,12 +27,12 @@ public class WebshopController {
     public WebshopController() {
         items = new ArrayList<>();
         filters = new ArrayList<>();
-        items.add(new ShopItem("Nike", "Running shoe", (double) 1000L, 0, Currency.CZK, Type.DOG));
-        items.add(new ShopItem("Running shoes", "Nike shoe in different colors", (double) 1000L, 10, Currency.CZK, Type.DOG));
-        items.add(new ShopItem("Printer", "Some HP printer that makes its job", (double) 3000L, 10, Currency.CZK, Type.CAT));
-        items.add(new ShopItem("Coca cola", "Delicious cola", (double) 10L, 100, Currency.CZK, Type.CAT));
-        items.add(new ShopItem("Wokin", "Chicken with fried rice and WOKIN sauce", (double) 119L, 1, Currency.CZK, Type.ACCESSORIES));
-        items.add(new ShopItem("T-shirt", "Blue with a corgi", (double) 300L, 1, Currency.CZK, Type.DOG));
+        items.add(new ShopItem("Nike", "Running shoe", (double) 1000L, 0, Currency.CZK, Type.CLOTHES_AND_SHOES));
+        items.add(new ShopItem("Running shoes", "Nike shoe in different colors", (double) 1000L, 10, Currency.CZK, Type.CLOTHES_AND_SHOES));
+        items.add(new ShopItem("Printer", "Some HP printer that makes its job", (double) 3000L, 10, Currency.CZK, Type.ELECTRONICS));
+        items.add(new ShopItem("Coca cola", "Delicious cola", (double) 10L, 100, Currency.CZK, Type.BEVERAGES_AND_SNACKS));
+        items.add(new ShopItem("Wokin", "Chicken with fried rice and WOKIN sauce", (double) 119L, 1, Currency.CZK, Type.BEVERAGES_AND_SNACKS));
+        items.add(new ShopItem("T-shirt", "Blue with a corgi", (double) 300L, 1, Currency.CZK, Type.CLOTHES_AND_SHOES));
 
         filters.add(new Filter("Brand"));
         filters.add(new Filter("Product Color"));
@@ -122,6 +123,24 @@ public class WebshopController {
         return "index";
     }
 
+    @PostMapping("/filter-by-price")
+    public String filterByPrice(@RequestParam Double price,
+                                @RequestParam(required = false) String exactly,
+                                @RequestParam(required = false) String above,
+                                @RequestParam(required = false) String below,
+                                Model model) {
+        if (exactly != null) {
+            model.addAttribute("items", getFilterByPrice(i -> i.getPrice().equals(price)));
+        } else if (above != null) {
+            model.addAttribute("items", getFilterByPrice(i -> i.getPrice() > price));
+        } else if (below != null){
+            model.addAttribute("items", getFilterByPrice(i -> i.getPrice() < price));
+        } else {
+            throw new IllegalArgumentException("Bad parameter!");
+        }
+        return "index";
+    }
+
 
     private OptionalDouble getAverage() {
         return items.stream()
@@ -154,6 +173,11 @@ public class WebshopController {
                 .collect(Collectors.toList());
 
         return changedCurrency;
+    }
 
+    private List<ShopItem> getFilterByPrice(Predicate<ShopItem> filter) {
+        return items.stream()
+                .filter(filter)
+                .collect(Collectors.toList());
     }
 }

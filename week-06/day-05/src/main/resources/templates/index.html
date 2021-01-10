@@ -21,11 +21,11 @@
 <div th:class="buttons">
     <div th:class="tags">
 
-        <a th:class="filter" th:href="@{/shop-items?type=DOG}"> Dog </a>
+        <a th:class="filter" th:href="@{/shop-items?type=CLOTHES_AND_SHOES}"> Clothes and shoes </a>
 
-        <a th:class="filter" th:href="@{/shop-items?type=CAT}"> Cat </a>
+        <a th:class="filter" th:href="@{/shop-items?type=ELECTRONICS}"> Electronics </a>
 
-        <a th:class="filter" th:href="@{/shop-items?type=ACCESSORIES}"> Accessories </a>
+        <a th:class="filter" th:href="@{/shop-items?type=BEVERAGES_AND_SNACKS}"> Beverages and snacks </a>
 
         <a th:class="filter" th:href="@{/price-in-eur}"> Euro </a>
 
@@ -39,11 +39,17 @@
     <div>
         <input type="text" name="search" placeholder="...something like nike">
         <button id="search" type="submit">
-            <a th:href="@{/webshop}">
-
-            </a>
             Search
         </button>
+    </div>
+</form>
+
+<form action="/filter-by-price" method="post">
+    <div>
+        <input type="number" name="price" placeholder="Filter by price" required>
+        <input type="submit" name="exactly" value="Exactly">
+        <input type="submit" name="above" value="Above">
+        <input type="submit" name="below" value="Below">
     </div>
 </form>
 
