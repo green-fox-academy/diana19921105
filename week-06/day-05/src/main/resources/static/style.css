@@ -43,7 +43,6 @@ header > hr {
     padding: 12px 32px
 }
 
-
 .filter {
     background-color: hotpink;
     color: white;
@@ -63,8 +62,8 @@ td, th {
     width: 200px;
     length: 100px;
     padding: 10px;
+    border-radius: 10px;
 }
-
 
 .center {
     margin-right: auto;
@@ -88,8 +87,11 @@ tbody {
     font-family: "Roboto Light", serif;
     font-size: medium;
     font-weight: bold;
+    color: dimgrey;
+}
 
-    color: crimson;
+tr:nth-child(even) {
+    background: beige;
 }
 
 h2 > span {
