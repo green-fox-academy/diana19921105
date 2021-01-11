@@ -30,6 +30,8 @@ public class WebshopController {
         items.add(new ShopItem("Coca cola", "Delicious cola", (double) 10L, 100, Currency.CZK, Type.BEVERAGES_AND_SNACKS, false, "Coca"));
         items.add(new ShopItem("Wokin", "Chicken with fried rice and WOKIN sauce", (double) 119L, 1, Currency.CZK, Type.BEVERAGES_AND_SNACKS, false, "Perfect Home"));
         items.add(new ShopItem("T-shirt", "Blue with a corgi", (double) 300L, 1, Currency.CZK, Type.CLOTHES_AND_SHOES, false, "Cropp"));
+        items.add(new ShopItem("Shirt", "Summer T-shirt with floral pattern", (double) 210L, 10, Currency.CZK, Type.CLOTHES_AND_SHOES, true, "Sinsay"));
+        items.add(new ShopItem("Laptop", "Acer laptop with 8GB RAM", (double) 5000L, 10, Currency.CZK, Type.ELECTRONICS, false, "Acer"));
     }
 
     @GetMapping("/webshop")
@@ -107,8 +109,9 @@ public class WebshopController {
                                  @RequestParam(required = false) String color,
                                  @RequestParam(required = false) Boolean shipping,
                                  @RequestParam(required = false) String brand,
+                                 @RequestParam(required = false) Boolean available,
                                  Model model) {
-        List<ShopItem> filtered = getDetailedSearchResult(filterName, amount, color, shipping, brand);
+        List<ShopItem> filtered = getDetailedSearchResult(filterName, amount, color, shipping, brand, available);
         model.addAttribute("items", filtered);
         return "filters";
     }
@@ -185,12 +188,13 @@ public class WebshopController {
                 .collect(Collectors.toList());
     }
 
-    private List<ShopItem> getDetailedSearchResult(String name, Integer amount, String color, Boolean shipping, String brand) {
+    private List<ShopItem> getDetailedSearchResult(String name, Integer amount, String color, Boolean shipping, String brand, Boolean available) {
         return items.stream()
                 .filter(i -> name == null || i.getName().toLowerCase().contains(name))
                 .filter(i -> amount == null || i.getQuantity().equals(amount))
                 .filter(i -> color == null || i.getDescription().toLowerCase().contains(color) || i.getName().toLowerCase().contains(color))
                 .filter(i -> shipping == null || i.isFreeShipping())
+                .filter(i -> available == null || i.getQuantity() > 0)
                 .filter(i -> brand == null || i.getBrand().equalsIgnoreCase(brand) || i.getName().toLowerCase().contains(brand) || i.getDescription().toLowerCase().contains(brand))
                 .collect(Collectors.toList());
     }
