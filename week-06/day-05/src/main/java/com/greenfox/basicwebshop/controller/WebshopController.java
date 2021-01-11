@@ -1,7 +1,6 @@
 package com.greenfox.basicwebshop.controller;
 
 import com.greenfox.basicwebshop.model.Currency;
-import com.greenfox.basicwebshop.model.Filter;
 import com.greenfox.basicwebshop.model.ShopItem;
 import com.greenfox.basicwebshop.model.Type;
 import org.springframework.stereotype.Controller;
@@ -22,21 +21,15 @@ import java.util.stream.Collectors;
 public class WebshopController {
 
     private List<ShopItem> items;
-    private List<Filter> filters;
 
     public WebshopController() {
         items = new ArrayList<>();
-        filters = new ArrayList<>();
-        items.add(new ShopItem("Nike", "Running shoe", (double) 1000L, 0, Currency.CZK, Type.CLOTHES_AND_SHOES));
-        items.add(new ShopItem("Running shoes", "Nike shoe in different colors", (double) 1000L, 10, Currency.CZK, Type.CLOTHES_AND_SHOES));
-        items.add(new ShopItem("Printer", "Some HP printer that makes its job", (double) 3000L, 10, Currency.CZK, Type.ELECTRONICS));
-        items.add(new ShopItem("Coca cola", "Delicious cola", (double) 10L, 100, Currency.CZK, Type.BEVERAGES_AND_SNACKS));
-        items.add(new ShopItem("Wokin", "Chicken with fried rice and WOKIN sauce", (double) 119L, 1, Currency.CZK, Type.BEVERAGES_AND_SNACKS));
-        items.add(new ShopItem("T-shirt", "Blue with a corgi", (double) 300L, 1, Currency.CZK, Type.CLOTHES_AND_SHOES));
-
-        filters.add(new Filter("Brand"));
-        filters.add(new Filter("Product Color"));
-        filters.add(new Filter("Most wanted"));
+        items.add(new ShopItem("Nike", "Running shoe", (double) 1000L, 0, Currency.CZK, Type.CLOTHES_AND_SHOES, true, "Nike"));
+        items.add(new ShopItem("Running shoes", "Adidas shoe in different colors", (double) 1000L, 10, Currency.CZK, Type.CLOTHES_AND_SHOES, false, "Adidas"));
+        items.add(new ShopItem("Printer", "Some HP printer that makes its job", (double) 3000L, 10, Currency.CZK, Type.ELECTRONICS, true, "HP"));
+        items.add(new ShopItem("Coca cola", "Delicious cola", (double) 10L, 100, Currency.CZK, Type.BEVERAGES_AND_SNACKS, false, "Coca"));
+        items.add(new ShopItem("Wokin", "Chicken with fried rice and WOKIN sauce", (double) 119L, 1, Currency.CZK, Type.BEVERAGES_AND_SNACKS, false, "Perfect Home"));
+        items.add(new ShopItem("T-shirt", "Blue with a corgi", (double) 300L, 1, Currency.CZK, Type.CLOTHES_AND_SHOES, false, "Cropp"));
     }
 
     @GetMapping("/webshop")
@@ -104,14 +97,25 @@ public class WebshopController {
     }
 
     @GetMapping("/more-filters")
-    public String moreFilters(Model model) {
-        model.addAttribute("filters", filters);
+    public String moreFilters() {
         return "filters";
     }
 
-    @GetMapping("/price-in-eur")
-    public String getPriceInEur(Model model) {
-        List<ShopItem> list = changePrice(Currency.EUR);
+    @GetMapping("/detailed-search")
+    public String detailedSearch(@RequestParam(required = false) String filterName,
+                                 @RequestParam(required = false) Integer amount,
+                                 @RequestParam(required = false) String color,
+                                 @RequestParam(required = false) Boolean shipping,
+                                 @RequestParam(required = false) String brand,
+                                 Model model) {
+        List<ShopItem> filtered = getDetailedSearchResult(filterName, amount, color, shipping, brand);
+        model.addAttribute("items", filtered);
+        return "filters";
+    }
+
+    @GetMapping("/price-in")
+    public String getPriceIn(@RequestParam Currency currency, Model model) {
+        List<ShopItem> list = changePrice(currency);
         model.addAttribute("items", list);
 
         return "index";
@@ -133,7 +137,7 @@ public class WebshopController {
             model.addAttribute("items", getFilterByPrice(i -> i.getPrice().equals(price)));
         } else if (above != null) {
             model.addAttribute("items", getFilterByPrice(i -> i.getPrice() > price));
-        } else if (below != null){
+        } else if (below != null) {
             model.addAttribute("items", getFilterByPrice(i -> i.getPrice() < price));
         } else {
             throw new IllegalArgumentException("Bad parameter!");
@@ -169,7 +173,7 @@ public class WebshopController {
 
     private List<ShopItem> changePrice(Currency currency) {
         List<ShopItem> changedCurrency = items.stream()
-                .map(i -> new ShopItem(i.getName(), i.getDescription(), i.getPrice() * currency.getRate(), i.getQuantity(), currency, i.getType()))
+                .map(i -> new ShopItem(i.getName(), i.getDescription(), i.getPrice() * currency.getRate(), i.getQuantity(), currency, i.getType(), i.isFreeShipping(), i.getBrand()))
                 .collect(Collectors.toList());
 
         return changedCurrency;
@@ -178,6 +182,16 @@ public class WebshopController {
     private List<ShopItem> getFilterByPrice(Predicate<ShopItem> filter) {
         return items.stream()
                 .filter(filter)
+                .collect(Collectors.toList());
+    }
+
+    private List<ShopItem> getDetailedSearchResult(String name, Integer amount, String color, Boolean shipping, String brand) {
+        return items.stream()
+                .filter(i -> name == null || i.getName().toLowerCase().contains(name))
+                .filter(i -> amount == null || i.getQuantity().equals(amount))
+                .filter(i -> color == null || i.getDescription().toLowerCase().contains(color) || i.getName().toLowerCase().contains(color))
+                .filter(i -> shipping == null || i.isFreeShipping())
+                .filter(i -> brand == null || i.getBrand().equalsIgnoreCase(brand) || i.getName().toLowerCase().contains(brand) || i.getDescription().toLowerCase().contains(brand))
                 .collect(Collectors.toList());
     }
 }

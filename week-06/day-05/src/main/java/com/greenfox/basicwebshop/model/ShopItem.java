@@ -9,14 +9,18 @@ public class ShopItem {
     private Integer quantity;
     private Currency currency;
     private Type type;
+    private Boolean freeShipping;
+    private String brand;
 
-    public ShopItem(String name, String description, Double price, Integer quantity, Currency currency, Type type) {
+    public ShopItem(String name, String description, Double price, Integer quantity, Currency currency, Type type, Boolean freeShipping, String brand) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.quantity = quantity;
         this.currency = currency;
         this.type = type;
+        this.freeShipping = freeShipping;
+        this.brand = brand;
     }
 
     public String getName() {
@@ -41,6 +45,18 @@ public class ShopItem {
 
     public Type getType() {
         return type;
+    }
+
+    public Boolean isFreeShipping() {
+        return freeShipping;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public Boolean getFreeShipping() {
+        return freeShipping;
     }
 
     @Override

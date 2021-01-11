@@ -12,8 +12,8 @@
             <a th:href="@{/webshop}"> My Shop </a>
             <a th:class="more-filters" th:href="@{/more-filters}"> More Filters >> </a>
         </h1>
-
     </div>
+
     <hr>
     <br>
 </header>
@@ -27,7 +27,9 @@
 
         <a th:class="filter" th:href="@{/shop-items?type=BEVERAGES_AND_SNACKS}"> Beverages and snacks </a>
 
-        <a th:class="filter" th:href="@{/price-in-eur}"> Euro </a>
+        <a th:class="filter" th:href="@{/price-in?currency=EUR}"> Eur </a>
+
+        <a th:class="filter" th:href="@{/price-in?currency=HUF}"> Huf </a>
 
         <a th:class="filter" th:href="@{/price-in-original}"> Original currency </a>
 
@@ -37,19 +39,17 @@
 
 <form action="/search" method="post">
     <div>
-        <input type="text" name="search" placeholder="...something like nike">
-        <button id="search" type="submit">
-            Search
-        </button>
+        <input type="text" id="input" name="search" placeholder="...something like nike">
+        <button id="search" type="submit"> Search</button>
     </div>
 </form>
 
 <form action="/filter-by-price" method="post">
     <div>
-        <input type="number" name="price" placeholder="Filter by price" required>
-        <input type="submit" name="exactly" value="Exactly">
-        <input type="submit" name="above" value="Above">
-        <input type="submit" name="below" value="Below">
+        <input type="number" id="filterByPrice" name="price" placeholder="Filter by price" required>
+        <input type="submit" class="filterInput" name="exactly" value="Exactly">
+        <input type="submit" class="filterInput" name="above" value="Above">
+        <input type="submit" class="filterInput" name="below" value="Below">
     </div>
 </form>
 
@@ -74,7 +74,5 @@
         </tbody>
     </table>
 </div>
-
-
 </body>
 </html>

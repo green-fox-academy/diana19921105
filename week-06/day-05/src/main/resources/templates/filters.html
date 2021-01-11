@@ -17,36 +17,44 @@
     <hr>
     <br>
 </header>
+<form action="/detailed-search" method="get">
+    <div class="container">
+        <input type="text" class="detailed" name="filterName" placeholder="filter by name">
 
-<div th:class="buttons">
+        <input type="number" class="detailed" name="amount" placeholder="filter by amount">
 
-    <div th:class="tags">
+        <input type="text" class="detailed" name="color" placeholder="filter by color">
 
-        <a th:class="filter" th:href="@{/shop-items?type=CLOTHES_AND_SHOES}"> Clothes and shoes </a>
+        <input type="text" class="detailed" name="brand" placeholder="filter by brand">
 
-        <a th:class="filter" th:href="@{/shop-items?type=ELECTRONICS}"> Electronics </a>
-
-        <a th:class="filter" th:href="@{/shop-items?type=BEVERAGES_AND_SNACKS}"> Beverages and snacks </a>
-
-        <a th:class="filter" th:href="@{/price-in-eur}"> Euro </a>
-
-        <a th:class="filter" th:href="@{/price-in-original}"> Original currency </a>
+        Free Shipping : <input type="checkbox" name="shipping" value="true">
 
     </div>
-</div>
 
-<form action="/search" method="post">
-    <div>
-        <input type="text" name="search" placeholder="...something like nike">
-        <button id="search" type="submit">
-            <a th:href="@{/webshop}">
-
-            </a>
-            Search
-        </button>
-    </div>
+    <button type="submit" id="check">Select Filter</button>
 </form>
 
+<div>
+    <table th:class="center">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Quantity</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="item: ${items}">
+            <td th:text="${item.getName()}"/>
+            <td th:text="${item.getDescription()}"></td>
+            <td th:text="${item.getPriceFormatted()}"/>
+            <td th:text="${item.getQuantity()}"/>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
 </body>
 </html>
