@@ -1,0 +1,98 @@
+Exercise 1. : select title from movie where director = "Steven Spielberg";
++-------------------------+
+| title                   |
++-------------------------+
+| E.T.                    |
+| Raiders of the Lost Ark |
++-------------------------+
+
+Exercise 2. : select distinct year from movie inner join rating on movie.mID = rating.mID where stars = 4 or stars = 5 order by year asc;
++------+
+| year |
++------+
+| 1937 |
+| 1939 |
+| 1981 |
+| 2009 |
++------+
+
+Exercise 3. : select title from movie left join rating on movie.mID = rating.mID where stars is null;
++-----------+
+| title     |
++-----------+
+| Star Wars |
+| Titanic   |
++-----------+
+
+Exercise 4. :  select name from reviewer inner join rating on reviewer.rId = rating.rId where ratingDate is null;
++---------------+
+| name          |
++---------------+
+| Daniel Lewis  |
+| Chris Jackson |
++---------------+
+
+Exercise 5. : select name, title, stars, ifnull(ratingDate, '<NA>') from movie inner join rating on movie.mID = rating.mID inner join reviewer on rating.rID = reviewer.rID order by name asc;
++------------------+-------------------------+-------+----------------------------+
+| name             | title                   | stars | ifnull(ratingDate, '<NA>') |
++------------------+-------------------------+-------+----------------------------+
+| Ashley White     | E.T.                    |     3 | 2011-01-02                 |
+| Brittany Harris  | The Sound of Music      |     2 | 2011-01-20                 |
+| Brittany Harris  | Raiders of the Lost Ark |     4 | 2011-01-12                 |
+| Brittany Harris  | Raiders of the Lost Ark |     2 | 2011-01-30                 |
+| Chris Jackson    | The Sound of Music      |     3 | 2011-01-27                 |
+| Chris Jackson    | E.T.                    |     2 | 2011-01-22                 |
+| Chris Jackson    | Raiders of the Lost Ark |     4 | <NA>                       |
+| Daniel Lewis     | Snow White              |     4 | <NA>                       |
+| Elizabeth Thomas | Avatar                  |     3 | 2011-01-15                 |
+| Elizabeth Thomas | Snow White              |     5 | 2011-01-19                 |
+| James Cameron    | Avatar                  |     5 | 2011-01-20                 |
+| Mike Anderson    | Gone with the Wind      |     3 | 2011-01-09                 |
+| Sarah Martinez   | Gone with the Wind      |     2 | 2011-01-22                 |
+| Sarah Martinez   | Gone with the Wind      |     4 | 2011-01-27                 |
++------------------+-------------------------+-------+----------------------------+
+
+Exercise 6. : select movie.mID, movie.title,rating.rID, rating.mID, rating.stars, reviewer.rID, 
+reviewer.name from movie inner join rating on movie.mID = rating.mID inner join reviewer on rating.rID = reviewer.rID;
+ select movie.mID, movie.title,rating.rID, rating.mID, rating.stars, reviewer.rID, reviewer.name from movie inner join 
+ rating on movie.mID = rating.mID inner join reviewer on rating.rID = reviewer.rID inner join rating as r on rating.rID = r.rID;
+ 
+Exercise 7. :  select distinct title, max(stars) from movie inner join rating on movie.mID = rating.mID group by title;
++-------------------------+------------+
+| title                   | max(stars) |
++-------------------------+------------+
+| Gone with the Wind      |          4 |
+| Snow White              |          5 |
+| The Sound of Music      |          3 |
+| Raiders of the Lost Ark |          4 |
+| E.T.                    |          3 |
+| Avatar                  |          5 |
++-------------------------+------------+
+
+Exercise 8. :
+
+ToDo Exercise :  create table todo (
+    -> TODO VARCHAR(255),
+    -> DOING VARCHAR (255),
+    -> Review VARCHAR(255),
+    -> Done VARCHAR(255));
+	 insert into todo (TODO, DOING, Review, Done) values ("Add new task", "Add new task error handling", "Remove task", "Remove task error handling");
+	 update todo set DOING = "Handle no given index";
+	 insert into todo (Done) values ("Handle out of bound index");
+	 alter table todo drop column TODO;
+	 +--------------+-----------------------------+-------------+----------------------------+
+| TODO         | DOING                       | Review      | Done                       |
++--------------+-----------------------------+-------------+----------------------------+
+| Add new task | Add new task error handling | Remove task | Remove task error handling |
++--------------+-----------------------------+-------------+----------------------------+
+
+Movies Exercise :  create table movie (
+    -> id INT AUTO_INCREMENT PRIMARY KEY,
+    -> Title VARCHAR (255),
+    -> Year INT,
+    -> Director VARCHAR (255) );
+	insert into movie (id, Title, Year, Director) values (1, "Toy Story", 1999, "John Lasseter");
+	insert into movie (id, Title, Year, Director) values (2, "A bug life", 1887, "John Doe");
+	
+	
+
