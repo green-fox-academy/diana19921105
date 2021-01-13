@@ -32,9 +32,23 @@ public class DependencyController {
 
     @GetMapping("/useful/email")
     public String email(@RequestParam String email, Model model) {
-       List<String> messageAndColor = utilityService.validateEmail(email);
+        List<String> messageAndColor = utilityService.validateEmail(email);
         model.addAttribute("message", messageAndColor.get(0));
         model.addAttribute("color", messageAndColor.get(1));
         return "email";
+    }
+
+    @GetMapping("/encoding")
+    public String encodingCaesar(@RequestParam String text, @RequestParam Integer number, Model model) {
+        String result = utilityService.caesar(text, number);
+        model.addAttribute("result", result);
+        return "caesar";
+    }
+
+    @GetMapping("/decoding")
+    public String decodingCaesar(@RequestParam String text, @RequestParam Integer number, Model model) {
+        String result = utilityService.caesar(text, number * (-1));
+        model.addAttribute("result", result);
+        return "caesar";
     }
 }
