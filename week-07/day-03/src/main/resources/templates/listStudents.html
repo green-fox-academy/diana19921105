@@ -1,0 +1,17 @@
+<!DO<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf Exercise #</title>
+    <link rel="stylesheet" th:href="@{/style.css}"/>
+    <meta charset="utf-8"/>
+</head>
+<body>
+
+<h1> Names </h1>
+
+<ul th:each="name: ${nameList}">
+    <li th:text="${name}"/>
+</ul>
+
+</body>
+</html>

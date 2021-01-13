@@ -1,0 +1,24 @@
+<!DO<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf Exercise #</title>
+    <link rel="stylesheet" th:href="@{/style.css}"/>
+    <meta charset="utf-8"/>
+</head>
+<body>
+
+<h1> Names </h1>
+
+<ul th:each="name: ${names}">
+    <li th:text="${name}"/>
+</ul>
+
+<form action="/gfa/add" method="post">
+    <label for="name"> Student name </label>
+    <input type="text" id="name" name="name">
+
+    <button type="submit"> Add student </button>
+</form>
+
+</body>
+</html>
