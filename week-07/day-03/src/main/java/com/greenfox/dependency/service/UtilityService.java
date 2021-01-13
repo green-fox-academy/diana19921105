@@ -39,4 +39,18 @@ public class UtilityService {
         }
         return result.toString();
     }
+
+    public List<String> validateEmail(String email) {
+        List<String> message = new ArrayList<>();
+
+
+       if (email.contains("@") && email.contains(".")) {
+         message.add(0, "Valid email");
+         message.add(1, "green");
+       } else {
+          message.add(0, "Invalid email");
+          message.add(1, "red");
+       }
+       return message;
+    }
 }

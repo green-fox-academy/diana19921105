@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 public class DependencyController {
 
@@ -30,7 +32,9 @@ public class DependencyController {
 
     @GetMapping("/useful/email")
     public String email(@RequestParam String email, Model model) {
-        model.addAttribute("email", email);
-        return "useful";
+       List<String> messageAndColor = utilityService.validateEmail(email);
+        model.addAttribute("message", messageAndColor.get(0));
+        model.addAttribute("color", messageAndColor.get(1));
+        return "email";
     }
 }
