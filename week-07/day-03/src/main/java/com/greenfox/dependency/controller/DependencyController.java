@@ -23,7 +23,8 @@ public class DependencyController {
     }
 
     @GetMapping("/useful/colored")
-    public String coloredBackground() {
+    public String coloredBackground(Model model) {
+        model.addAttribute("color", utilityService.randomColor());
         return "colored";
     }
 
