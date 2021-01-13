@@ -2,6 +2,7 @@ package com.greenfox.dependency;
 
 import com.greenfox.dependency.service.MyColor;
 import com.greenfox.dependency.service.Printer;
+import com.greenfox.dependency.service.UtilityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

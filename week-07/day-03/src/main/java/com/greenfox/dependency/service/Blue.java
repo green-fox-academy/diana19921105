@@ -1,4 +1,4 @@
-package com.greenfox.dependency.model;
+package com.greenfox.dependency.service;
 
 import com.greenfox.dependency.service.MyColor;
 import org.springframework.stereotype.Service;
