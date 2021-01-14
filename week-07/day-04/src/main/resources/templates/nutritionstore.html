@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Thymeleaf Exercise #</title>
+    <link rel="stylesheet" th:href="@{/style.css}"/>
+    <meta charset="utf-8"/>
+</head>
+<body>
+
+<ul>
+    <li><a th:href="@{/information}">Information</a></li>
+    <li><a th:href="@{/nutrition-store}">Nutrition Store</a></li>
+</ul>
+
+
+
+<br>
+
+<form action="/update-food" method="post">
+    <div>
+        <label>Food</label>
+        <select name="food">
+            <option th:each="food: ${foods}" th:text="${food.getFood}"></option>
+        </select>
+    </div>
+
+    <br>
+
+    <div>
+        <label>Drink</label>
+        <select name="drink">
+            <option th:each="drink: ${drinks}" th:text="${drink.getDrink}"></option>
+        </select>
+    </div>
+
+    <input type="submit" name="change" value="Change">
+</form>
+
+<div>
+    <form action="/nutrition-store" method="post">
+        <input type="text" required="required" name="food">
+        <input type="text" required="required" name="drink">
+
+        <button type="submit">Add</button>
+    </form>
+
+</div>
+
+</body>
+</html>

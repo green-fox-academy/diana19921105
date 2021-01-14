@@ -1,6 +1,7 @@
 package com.greenfox.foxclub.service;
 
 import com.greenfox.foxclub.model.Fox;
+import com.greenfox.foxclub.model.Trick;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ public class InformationService {
 
     public InformationService() {
         foxList = new ArrayList<>();
+        foxList.add(new Fox("Green"));
     }
 
     public void add(Fox fox) {

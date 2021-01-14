@@ -8,17 +8,17 @@
 <body>
 <ul>
     <li><a th:href="@{/information}">Information</a></li>
+    <li><a th:href="@{/nutrition-store}">Nutrition Store</a></li>
 </ul>
 
 <div>
     <a th:href="@{/}"> <img src="greenfox.png" alt="green fox"> </a>
 </div>
 
-<p>This is <span th:text="${fox.name}"></span>. Currently living on <span th:text="${fox.getFood}"></span> and <span th:text="${fox.getDrink}"></span>. He knows <span th:text="${tricksNumber}"></span> tricks.</p>
+<p>This is <span th:text="${fox.getName}"></span>. Currently living on <span th:text="${fox.food.food}"></span> and <span th:text="${fox.drink.drink}"></span>. He knows <span th:text="${tricksNumber}"></span> tricks.</p>
 <h1>Known tricks</h1>
-<ul>
-    <li>write HTML</li>
-    <li>code in Java</li>
+<ul th:if="tricksNumber != 0" th:each="trick: ${tricks}">
+    <li th:text="${tricks.}"/>
 </ul>
 
 </body>

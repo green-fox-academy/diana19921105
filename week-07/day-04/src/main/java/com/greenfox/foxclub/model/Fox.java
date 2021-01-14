@@ -1,15 +1,17 @@
 package com.greenfox.foxclub.model;
 
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Fox {
     private String name;
     private List<Trick> tricks = new ArrayList<>();
-    private String food = "bread";
-    private String drink = "water";
+    private Food food = new Food("bread");
+    private Drink drink = new Drink("water");
 
-    public Fox(String name, List<Trick> tricks, String food, String drink) {
+    public Fox(String name, List<Trick> tricks, Food food, Drink drink) {
         this.name = name;
         this.tricks = tricks;
         this.food = food;
@@ -39,19 +41,19 @@ public class Fox {
         this.tricks = tricks;
     }
 
-    public String getFood() {
+    public Food getFood() {
         return food;
     }
 
-    public void setFood(String food) {
+    public void setFood(Food food) {
         this.food = food;
     }
 
-    public String getDrink() {
+    public Drink getDrink() {
         return drink;
     }
 
-    public void setDrink(String drink) {
+    public void setDrink(Drink drink) {
         this.drink = drink;
     }
 }
