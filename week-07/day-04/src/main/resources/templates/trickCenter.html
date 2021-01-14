@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Thymeleaf Exercise #</title>
+    <link rel="stylesheet" th:href="@{/style.css}"/>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<ul>
+    <li><a th:href="'/?name=' + ${fox.getName()}">Information</a></li>
+    <li><a th:href="'/nutrition-store?name=' + ${fox.getName()}">Nutrition Store</a></li>
+    <li><a th:href="'/trick-center?name=' + ${fox.getName()}">Trick Center</a></li>
+</ul>
+
+
+
+</body>
+</html>

@@ -6,13 +6,15 @@
     <meta charset="utf-8"/>
 </head>
 <body>
+    <div>
+        <a th:href="@{/}"> <img src="greenfox.png" alt="green fox" class="homeButton"> </a>
+    </div>
 
 <ul>
-    <li><a th:href="@{/information}">Information</a></li>
-    <li><a th:href="@{/nutrition-store}">Nutrition Store</a></li>
+    <li><a th:href="'/?name=' + ${fox.getName()}">Information</a></li>
+    <li><a th:href="'/nutrition-store?name=' + ${fox.getName()}">Nutrition Store</a></li>
+    <li><a th:href="'/trick-center?name=' + ${fox.getName()}">Trick Center</a></li>
 </ul>
-
-
 
 <br>
 

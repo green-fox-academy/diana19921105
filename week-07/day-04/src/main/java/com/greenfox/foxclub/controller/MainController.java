@@ -3,8 +3,10 @@ package com.greenfox.foxclub.controller;
 import com.greenfox.foxclub.model.Drink;
 import com.greenfox.foxclub.model.Food;
 import com.greenfox.foxclub.model.Fox;
+import com.greenfox.foxclub.model.Trick;
 import com.greenfox.foxclub.service.InformationService;
 import com.greenfox.foxclub.service.NutritionService;
+import com.greenfox.foxclub.service.TrickService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,17 +15,21 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 public class MainController {
 
     private InformationService informationService;
     private NutritionService nutritionService;
+    private TrickService trickService;
     private Fox fox = new Fox("Green");
 
     @Autowired
-    public MainController(InformationService informationService, NutritionService nutritionService) {
+    public MainController(InformationService informationService, NutritionService nutritionService, TrickService trickService) {
         this.informationService = informationService;
         this.nutritionService = nutritionService;
+        this.trickService = trickService;
     }
 
     @GetMapping("/")
@@ -47,16 +53,13 @@ public class MainController {
 
     @PostMapping("/login")
     public String sendLogin(@RequestParam String name) {
+        informationService.add(new Fox(name));
         return "redirect:/?name=" + name;
-    }
-
-    @GetMapping("/information")
-    public String information() {
-        return "index";
     }
 
     @GetMapping("/nutrition-store")
     public String nutritionStore(Model model) {
+        model.addAttribute("fox", this.fox);
         model.addAttribute("foods", nutritionService.getFoods());
         model.addAttribute("drinks", nutritionService.getDrinks());
         return "nutritionstore";
@@ -76,5 +79,21 @@ public class MainController {
         nutritionService.updateFoodAndDrink(food, drink, this.fox);
         return "redirect:/";
     }
+
+    @GetMapping("/trick-center")
+    public String trickCenter(Model model) {
+        List<Trick> trickList = trickService.getTricks(this.fox);
+        model.addAttribute("fox", this.fox);
+        model.addAttribute("trickList", trickList);
+        return "trickCenter";
+    }
+
+    @PostMapping("/trick-center")
+    public String learn(@ModelAttribute Trick trick, Model model) {
+        trickService.addTricks(trick, this.fox);
+        model.addAttribute("fox", this.fox);
+        return "trickCenter";
+    }
+
 }
 

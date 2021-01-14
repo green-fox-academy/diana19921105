@@ -7,19 +7,26 @@
 </head>
 <body>
 <ul>
-    <li><a th:href="@{/information}">Information</a></li>
-    <li><a th:href="@{/nutrition-store}">Nutrition Store</a></li>
+    <li><a th:href="'/?name=' + ${fox.getName()}">Information</a></li>
+    <li><a th:href="'/nutrition-store?name=' + ${fox.getName()}">Nutrition Store</a></li>
+    <li><a th:href="'/trick-center?name=' + ${fox.getName()}">Trick Center</a></li>
 </ul>
 
 <div>
     <a th:href="@{/}"> <img src="greenfox.png" alt="green fox"> </a>
 </div>
 
-<p>This is <span th:text="${fox.getName}"></span>. Currently living on <span th:text="${fox.food.food}"></span> and <span th:text="${fox.drink.drink}"></span>. He knows <span th:text="${tricksNumber}"></span> tricks.</p>
+<p>This is <span th:text="${fox.getName()}"></span>. Currently living on <span th:text="${fox.food.food}"></span> and
+    <span th:text="${fox.drink.drink}"></span>.
+    He knows <span th:text="${tricksNumber}"></span> tricks.</p>
 <h1>Known tricks</h1>
-<ul th:if="tricksNumber != 0" th:each="trick: ${tricks}">
-    <li th:text="${tricks.}"/>
+<ul th:if="${tricksNumber} != 0" th:each="trick: ${tricks}">
+    <li th:text="trick"></li>
 </ul>
+
+<span th:unless="${tricksNumber} != 0">
+    You are dummy! Go learn some tricks!
+</span>
 
 </body>
 </html>

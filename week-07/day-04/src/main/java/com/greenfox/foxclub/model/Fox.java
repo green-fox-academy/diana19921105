@@ -1,7 +1,5 @@
 package com.greenfox.foxclub.model;
 
-import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,5 +53,10 @@ public class Fox {
 
     public void setDrink(Drink drink) {
         this.drink = drink;
+    }
+
+    public List<Trick> addTricks(Trick trick) {
+        tricks.add(trick);
+        return tricks;
     }
 }

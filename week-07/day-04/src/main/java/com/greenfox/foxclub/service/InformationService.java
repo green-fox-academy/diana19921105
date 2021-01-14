@@ -23,11 +23,10 @@ public class InformationService {
     }
 
     public Fox findFox(String name) {
-        Fox createNew = foxList.stream()
+        return foxList.stream()
                 .filter(f -> f.getName().equals(name))
                 .findAny()
                 .orElse(new Fox(name));
-        return createNew;
     }
 
 }
