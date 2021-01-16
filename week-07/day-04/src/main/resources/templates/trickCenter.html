@@ -12,6 +12,16 @@
     <li><a th:href="'/trick-center?name=' + ${fox.getName()}">Trick Center</a></li>
 </ul>
 
+<form action="/trick-center" method="post">
+<div>
+    <label>Tricks</label>
+    <select name="trick" required>
+        <option th:each="trick: ${tricks}" th:text="${trick.getName()}" th:value="${trick}"></option>
+    </select>
+</div>
+
+<button type="submit">Learn</button>
+</form>
 
 
 </body>

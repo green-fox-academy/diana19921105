@@ -2,6 +2,7 @@ package com.greenfox.foxclub.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Fox {
     private String name;
@@ -21,6 +22,7 @@ public class Fox {
 
     public Fox(String name) {
         this.name = name;
+
     }
 
     public String getName() {
@@ -55,7 +57,7 @@ public class Fox {
         this.drink = drink;
     }
 
-    public List<Trick> addTricks(Trick trick) {
+    public List<Trick> addTrick(Trick trick) {
         tricks.add(trick);
         return tricks;
     }

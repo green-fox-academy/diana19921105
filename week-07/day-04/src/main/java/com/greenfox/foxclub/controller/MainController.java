@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
-
 @Controller
 public class MainController {
 
@@ -82,17 +80,17 @@ public class MainController {
 
     @GetMapping("/trick-center")
     public String trickCenter(Model model) {
-        List<Trick> trickList = trickService.getTricks(this.fox);
         model.addAttribute("fox", this.fox);
-        model.addAttribute("trickList", trickList);
+        model.addAttribute("tricks", trickService.getFilteredTricks(this.fox));
         return "trickCenter";
     }
 
     @PostMapping("/trick-center")
-    public String learn(@ModelAttribute Trick trick, Model model) {
-        trickService.addTricks(trick, this.fox);
-        model.addAttribute("fox", this.fox);
-        return "trickCenter";
+    public String learn(@ModelAttribute Trick trick) {
+        if (!this.fox.getTricks().contains(trick)) {
+            this.fox.addTrick(trick);
+        }
+        return "redirect:/";
     }
 
 }
