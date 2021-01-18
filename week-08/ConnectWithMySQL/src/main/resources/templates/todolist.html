@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Thymeleaf Exercise #</title>
     <link rel="stylesheet" th:href="@{/style.css}"/>
@@ -19,12 +19,23 @@
     </thead>
     <tbody>
     <tr th:each="todo: ${todos}">
-        <td th:text="${todo.id}"/>
-        <td th:text="${todo.title}"/>
-        <td th:text="${todo.urgent}"/>
-        <td th:text="${todo.done}"/>
+        <td th:text="${todo.getId}"/>
+        <td th:text="${todo.getTitle}"/>
+        <td th:text="${todo.isUrgent}"/>
+        <td th:text="${todo.isDone}"/>
     </tr>
     </tbody>
 </table>
+<div th:if="${done.size() == 0}">
+    <p>No done todos yet. Start working!</p>
+</div>
+<div th:unless="${done.size() == 0}">
+    <p>done yet:</p>
+
+    <ul th:each="donet: ${done}">
+        <li th:text="${donet.getTitle()}"></li>
+
+    </ul>
+</div>
 </body>
 </html>
