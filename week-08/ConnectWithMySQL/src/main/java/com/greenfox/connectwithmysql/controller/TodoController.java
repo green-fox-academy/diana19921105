@@ -52,8 +52,8 @@ public class TodoController {
     }
 
     @PostMapping("/add")
-    public String addTodos(@ModelAttribute Todo todo) {
-        todoRepository.save(todo);
-        return "redirect:/";
+    public String addTodos(@RequestParam String title) {
+        todoRepository.save(new Todo(title));
+        return "redirect:/todo/";
     }
 }
