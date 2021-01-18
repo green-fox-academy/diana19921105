@@ -7,12 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @RequestMapping("/todo")
 @Controller
@@ -43,5 +44,16 @@ public class TodoController {
 
         model.addAttribute("done", doneTodos);
         return "todolist";
+    }
+
+    @GetMapping("/add")
+    public String add() {
+        return "addTodo";
+    }
+
+    @PostMapping("/add")
+    public String addTodos(@ModelAttribute Todo todo) {
+        todoRepository.save(todo);
+        return "redirect:/";
     }
 }
