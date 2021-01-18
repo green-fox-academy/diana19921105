@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Thymeleaf Exercise #</title>
+    <link rel="stylesheet" th:href="@{/style.css}"/>
+    <meta charset="utf-8"/>
+</head>
+<body>
+
+<h1>Todos for today:</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Urgent</th>
+        <th>Done</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="todo: ${todos}">
+        <td th:text="${todo.id}"/>
+        <td th:text="${todo.title}"/>
+        <td th:text="${todo.urgent}"/>
+        <td th:text="${todo.done}"/>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -21,6 +21,12 @@ public class Todo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-    private boolean urgent = false;
-    private boolean done = false;
+    private boolean urgent;
+    private boolean done;
+
+    public Todo(String title) {
+        this.title = title;
+        urgent = false;
+        done = false;
+    }
 }
