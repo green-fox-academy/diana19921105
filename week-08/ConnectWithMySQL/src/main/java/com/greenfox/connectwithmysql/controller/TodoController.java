@@ -84,7 +84,19 @@ public class TodoController {
         return "redirect:/todo/list";
     }
 
-    public void editTodo(Long id, Todo updatedTodo) {
+    @PostMapping("/search")
+    public String searchTodo(@RequestParam String search,
+                             Model model) {
+        List<Todo> allTodo = (List<Todo>) todoRepository.findAll();
+        List<Todo> filteredTodos = allTodo.stream()
+                .filter(t -> t.getContent().toLowerCase().contains(search) || t.getTitle().toLowerCase().contains(search) || t.getDescription().toLowerCase().contains(search))
+                .collect(Collectors.toList());
+
+        model.addAttribute("todos", filteredTodos);
+        return "todolist";
+    }
+
+    private void editTodo(Long id, Todo updatedTodo) {
         Optional<Todo> optionalTodo = todoRepository.findById(id);
         if (!optionalTodo.isPresent()) {
             throw new IllegalArgumentException();
@@ -94,6 +106,5 @@ public class TodoController {
         updatedTodo.setId(id);
 
         todoRepository.save(updatedTodo);
-
     }
 }

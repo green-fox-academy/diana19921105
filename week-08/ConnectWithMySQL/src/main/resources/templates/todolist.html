@@ -9,6 +9,12 @@
 
 <a th:href="@{/todo/add}">Add new todos</a>
 
+<form action="/todo/search" method="post">
+<input type="text" name="search" id="search">
+    <button type="submit">List todos</button>
+</form>
+
+
 <h1>Todos for today:</h1>
 <table>
     <thead>
@@ -25,6 +31,8 @@
         <td th:text="${todo.getTitle}"/>
         <td th:text="${todo.isUrgent}"/>
         <td th:text="${todo.isDone}"/>
+        <td th:text="${todo.getDescription()}"/>
+        <td th:text="${todo.getContent()}"/>
         <td><a th:href="'/todo' + '/delete/' + ${todo.getId}">Delete</a></td>
         <td><a th:href="'/todo' + '/edit/' + ${todo.getId}">Edit</a></td>
     </tr>
