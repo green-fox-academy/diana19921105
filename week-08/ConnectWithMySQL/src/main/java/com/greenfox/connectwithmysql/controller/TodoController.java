@@ -6,14 +6,15 @@ import com.greenfox.connectwithmysql.repository.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequestMapping("/todo")
@@ -60,8 +61,39 @@ public class TodoController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteItem(@PathVariable Long id) {
+    public String deleteTodo(@PathVariable Long id) {
         todoRepository.deleteById(id);
         return "redirect:/todo/list";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editTodo(@PathVariable Long id, Model model) {
+        Optional<Todo> optionalTodo = todoRepository.findById(id);
+        if (optionalTodo.isPresent()) {
+            model.addAttribute("todo", optionalTodo.get());
+            return "edit";
+        }
+        return "edit";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editById(@PathVariable Long id,
+                           @ModelAttribute Todo todo) {
+
+        editTodo(id, todo);
+        return "redirect:/todo/list";
+    }
+
+    public void editTodo(Long id, Todo updatedTodo) {
+        Optional<Todo> optionalTodo = todoRepository.findById(id);
+        if (!optionalTodo.isPresent()) {
+            throw new IllegalArgumentException();
+        }
+
+        Todo todo = optionalTodo.get();
+        updatedTodo.setId(id);
+
+        todoRepository.save(updatedTodo);
+
     }
 }
