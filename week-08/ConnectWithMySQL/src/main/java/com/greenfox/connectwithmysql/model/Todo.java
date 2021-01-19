@@ -18,8 +18,9 @@ import javax.persistence.ManyToOne;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 @Builder
+
+@Entity
 public class Todo {
 
     @Id
@@ -34,4 +35,9 @@ public class Todo {
     @ManyToOne
     @JoinColumn(name = "assignee_id")
     private Assignee assignee;
+
+    @Override
+    public String toString() {
+        return getTitle();
+    }
 }

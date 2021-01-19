@@ -60,7 +60,8 @@ public class TodoController {
 
     @PostMapping("/add")
     public String addTodos(@RequestParam String title) {
-        todoRepository.save(Todo.builder().title(title).build());
+        Assignee assignee = assigneeRepository.findByName("Mari").orElse(null);
+        todoRepository.save(Todo.builder().title(title).assignee(assignee).build());
         return "redirect:/todo/";
     }
 
@@ -73,10 +74,7 @@ public class TodoController {
     @GetMapping("/edit/{id}")
     public String editTodo(@PathVariable Long id, Model model) {
         Optional<Todo> optionalTodo = todoRepository.findById(id);
-        if (optionalTodo.isPresent()) {
-            model.addAttribute("todo", optionalTodo.get());
-            return "edit";
-        }
+        optionalTodo.ifPresent(todo -> model.addAttribute("todo", todo));
         return "edit";
     }
 
@@ -107,15 +105,28 @@ public class TodoController {
         return "assignees";
     }
 
+    @GetMapping("/add-new-assignee")
+    public String addNew() {
+        return "addAssignee";
+    }
+
+    @PostMapping("/add-new-assignee")
+    public String addNewAssignee(@ModelAttribute Assignee assignee) {
+        assigneeRepository.save(assignee);
+        return "redirect:/list-assignees";
+    }
+
     private void editTodo(Long id, Todo updatedTodo) {
         Optional<Todo> optionalTodo = todoRepository.findById(id);
-        if (!optionalTodo.isPresent()) {
+        if (optionalTodo.isEmpty()) {
             throw new IllegalArgumentException();
         }
-
-        Todo todo = optionalTodo.get();
-        updatedTodo.setId(id);
-
-        todoRepository.save(updatedTodo);
+        Todo savable = optionalTodo.get();
+        savable.setUrgent(updatedTodo.isUrgent());
+        savable.setDone(updatedTodo.isDone());
+        savable.setTitle(updatedTodo.getTitle());
+        savable.setContent(updatedTodo.getContent());
+//        savable.setAssignee(updatedTodo.getAssignee());
+        todoRepository.save(savable);
     }
 }
