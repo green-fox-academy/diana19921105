@@ -1,6 +1,7 @@
 package com.greenfox.connectwithmysql.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,6 +17,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
 public class Todo {
 
     @Id
@@ -24,8 +26,4 @@ public class Todo {
     private String title;
     private boolean urgent = false;
     private boolean done = false;
-
-    public Todo(String title) {
-        this.title = title;
-    }
 }
