@@ -6,13 +6,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Getter
 @Setter
@@ -20,18 +20,18 @@ import javax.persistence.ManyToOne;
 @NoArgsConstructor
 @Entity
 @Builder
-public class Todo {
-
+public class Assignee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String title;
-    private String content;
-    private String description;
-    private boolean urgent = false;
-    private boolean done = false;
 
-    @ManyToOne
-    @JoinColumn(name = "assignee_id")
-    private Assignee assignee;
+    @Column(unique = true)
+    String name;
+
+    @Column(unique = true)
+    String email;
+
+    @OneToMany(mappedBy = "assignee")
+    private List<Todo> todoList;
+
 }

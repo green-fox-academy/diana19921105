@@ -8,6 +8,7 @@
 <body>
 
 <a th:href="@{/todo/add}">Add new todos</a>
+<a th:href="@{/todo/list-assignees}">List Assignees</a>
 
 <form action="/todo/search" method="post">
 <input type="text" name="search" id="search">
@@ -38,16 +39,16 @@
     </tr>
     </tbody>
 </table>
-<div th:if="${done.size() == 0}">
-    <p>No done todos yet. Start working!</p>
-</div>
-<div th:unless="${done.size() == 0}">
-    <p>done yet:</p>
+<!--<div th:if="${done.size() == 0}">-->
+<!--    <p>No done todos yet. Start working!</p>-->
+<!--</div>-->
+<!--<div th:unless="${done.size() == 0}">-->
+<!--    <p>done yet:</p>-->
 
-    <ul th:each="donet: ${done}">
-        <li th:text="${donet.getTitle()}"></li>
+<!--    <ul th:each="donet: ${done}">-->
+<!--        <li th:text="${donet.getTitle()}"></li>-->
 
-    </ul>
-</div>
+<!--    </ul>-->
+<!--</div>-->
 </body>
 </html>

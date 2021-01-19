@@ -1,7 +1,9 @@
 package com.greenfox.connectwithmysql.controller;
 
 
+import com.greenfox.connectwithmysql.model.Assignee;
 import com.greenfox.connectwithmysql.model.Todo;
+import com.greenfox.connectwithmysql.repository.AssigneeRepository;
 import com.greenfox.connectwithmysql.repository.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,10 +24,12 @@ import java.util.stream.Collectors;
 public class TodoController {
 
     private TodoRepository todoRepository;
+    private AssigneeRepository assigneeRepository;
 
     @Autowired
-    public TodoController(TodoRepository todoRepository) {
+    public TodoController(TodoRepository todoRepository, AssigneeRepository assigneeRepository) {
         this.todoRepository = todoRepository;
+        this.assigneeRepository = assigneeRepository;
     }
 
     @GetMapping(value = {"/", "/list"})
@@ -94,6 +98,13 @@ public class TodoController {
 
         model.addAttribute("todos", filteredTodos);
         return "todolist";
+    }
+
+    @GetMapping("/list-assignees")
+    public String listAssignees(Model model) {
+        List<Assignee> assigneeList = (List<Assignee>) assigneeRepository.findAll();
+        model.addAttribute("assignees", assigneeList);
+        return "assignees";
     }
 
     private void editTodo(Long id, Todo updatedTodo) {

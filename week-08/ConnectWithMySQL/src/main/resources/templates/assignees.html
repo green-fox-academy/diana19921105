@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf Exercise #</title>
+    <link rel="stylesheet" th:href="@{/style.css}"/>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<h1>Assignees:</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="assignee: ${assignees}">
+        <td th:text="${assignee.getId()}"/>
+        <td th:text="${assignee.getName()}"/>
+        <td th:text="${assignee.getEmail()}"/>
+        <td th:text="${assignee.getTodoList()}"/>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
