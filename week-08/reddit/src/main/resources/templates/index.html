@@ -19,6 +19,7 @@
         <td><a th:href="'/upVote/' + ${post.getId()}">+</a></td>
         <td><a th:href="'/downVote/' + ${post.getId()}">-</a></td>
         <td th:text="${post.getTitle()}"></td>
+        <td th:text="${post.getTimestamp()}"></td>
     </tr>
     </tbody>
 </table>

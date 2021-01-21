@@ -12,26 +12,30 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.sql.Timestamp;
 
 @Entity
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class Post {
 
-    String title;
+    private String title;
+
     @Type(type = "text")
-    String content;
+    private String content;
 
     @Column(nullable = false)
-    Integer score = 0;
+    private Integer score = 0;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private Timestamp timestamp;
 
     public Integer upVote() {
          return score++;
