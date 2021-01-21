@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf Exercise #</title>
+    <link rel="stylesheet" th:href="@{/style.css}"/>
+    <meta charset="utf-8"/>
+</head>
+<body>
+
+<h1>Submit new post</h1>
+
+<form action="/submit" method="post">
+    <p>Title</p>
+    <input type="text" name="title"> <br>
+    <input type=url placeholder="URL" name="url">
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>

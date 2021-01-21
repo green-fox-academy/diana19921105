@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf Exercise #</title>
+    <link rel="stylesheet" th:href="@{/style.css}"/>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<div>
+    <a th:href="@{/submit}">Submit new post</a>
+</div>
+
+<h1>Trending posts</h1>
+
+<table>
+    <tbody>
+    <tr th:each="post: ${posts}">
+        <td th:text="${post.getScore()}"></td>
+        <td><a th:href="'/upVote/' + ${post.getId()}">+</a></td>
+        <td><a th:href="'/downVote/' + ${post.getId()}">-</a></td>
+        <td th:text="${post.getTitle()}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
