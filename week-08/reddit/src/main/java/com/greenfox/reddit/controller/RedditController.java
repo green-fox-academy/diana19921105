@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+import java.util.Optional;
+
 @Controller
 public class RedditController {
     private RedditService redditService;
@@ -56,12 +59,12 @@ public class RedditController {
     }
 
     @PostMapping("/registration")
-    public String registrateNewUser(@RequestParam String name,
-                                    @RequestParam String email,
-                                    @RequestParam String password,
-                                    Model model) {
-        userService.findByUserName(name);
-        if (!name.contains("\\W") && email.contains("@") && email.contains(".")) {
+    public String registerNewUser(@RequestParam String name,
+                                  @RequestParam String email,
+                                  @RequestParam String password,
+                                  Model model) {
+        Optional<User> user = userService.findByUserName(name);
+        if (!name.contains("\\W") && email.contains("@") && email.contains(".") && user.isEmpty()) {
             model.addAttribute("name", name);
             model.addAttribute("email", email);
             model.addAttribute("password", password);
@@ -95,15 +98,15 @@ public class RedditController {
     }
 
     @PostMapping("/submit")
-    public String submit(@RequestParam String title,
-                         @RequestParam String url,
-                         @RequestParam(required = false) Long userId,
-                         @ModelAttribute Post post,
-                         Model model) {
-        userService.findByIdAndAddPost(userId);
+    public String submitPost(@RequestParam String title,
+                             @RequestParam String url,
+                             @RequestParam Long userId,
+                             @ModelAttribute Post post,
+                             Model model) {
+
+        redditService.submitNewPost(userId, post);
         model.addAttribute("title", title);
         model.addAttribute("url", url);
-        redditService.add(post);
         return "redirect:/";
     }
 

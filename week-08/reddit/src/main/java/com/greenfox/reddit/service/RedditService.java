@@ -1,6 +1,7 @@
 package com.greenfox.reddit.service;
 
 import com.greenfox.reddit.model.Post;
+import com.greenfox.reddit.model.User;
 import com.greenfox.reddit.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -8,17 +9,19 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
 public class RedditService {
     private PostRepository postRepository;
+    private UserService userService;
 
     @Autowired
-    public RedditService(PostRepository postRepository) {
+    public RedditService(PostRepository postRepository, UserService userService) {
         this.postRepository = postRepository;
+        this.userService = userService;
     }
 
     public List<Post> findAll() {
@@ -30,8 +33,7 @@ public class RedditService {
         postRepository.findById(id);
     }
 
-    public void add(Post post) {
-        post.setTimestamp(new Timestamp(System.currentTimeMillis()));
+    public void save(Post post) {
         postRepository.save(post);
     }
 
@@ -59,5 +61,14 @@ public class RedditService {
 
     public Page<Post> findByScore(int page, int size) {
         return postRepository.findAll(PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "score")));
+    }
+
+    public void submitNewPost(Long userId, Post post) {
+        User user = userService.findById(userId)
+                .orElseThrow(() -> new NoSuchElementException("No such User!"));
+        post.setUser(user);
+        List<Post> postList = user.getPost();
+        postList.add(post);
+        this.save(post);
     }
 }
