@@ -11,7 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import java.util.List;
 
@@ -20,18 +19,16 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
 @Entity
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long UserId;
+    private Long UserId;
 
     @Column(unique = true)
-    String name;
+    private String name;
 
-//    @OneToMany
-//    @JoinColumn(name = "post_id")
-//    private List<Post> post;
+    @OneToMany(mappedBy = "user")
+    private List<Post> post;
 }

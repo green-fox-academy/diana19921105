@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf Exercise #</title>
+    <link rel="stylesheet" th:href="@{/style.css}"/>
+    <link href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<h1>Login</h1>
+<form action="/login" method="post">
+    <input type="text" name="userName" placeholder="Type your username!">
+    <input type="email" name="email" placeholder="Type your registered email!">
+    <button type="submit">Log in</button>
+</form>
+
+<h2 style="color: red">Invalid username or password!!</h2>
+</body>
+</html>

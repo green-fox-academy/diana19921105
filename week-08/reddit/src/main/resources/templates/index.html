@@ -4,17 +4,32 @@
     <title>Thymeleaf Exercise #</title>
     <link rel="stylesheet" th:href="@{/style.css}"/>
     <meta charset="utf-8"/>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 </head>
 <body>
 <div>
     <a th:href="@{/submit}">Submit new post</a>
+    <a th:href="@{/registration}">Registration</a>
+    <a th:href="@{/login}">LogIn</a> <span th:text="'Hello, ' + ${userName} + '!'"></span>
 </div>
 
 <h1>Trending posts</h1>
 
-<table>
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">Score</th>
+        <th scope="col">Upvote</th>
+        <th scope="col">Downvote</th>
+        <th scope="col">Title</th>
+        <th scope="col">Published</th>
+    </tr>
+    </thead>
     <tbody>
-    <tr th:each="post: ${posts}">
+    <tr th:each="post: ${page.getContent()}">
         <td th:text="${post.getScore()}"></td>
         <td><a th:href="'/upVote/' + ${post.getId()}">+</a></td>
         <td><a th:href="'/downVote/' + ${post.getId()}">-</a></td>
@@ -23,6 +38,30 @@
     </tr>
     </tbody>
 </table>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item">
+            <a th:if="${page.hasPrevious()}" th:href="'/?page=' + ${prevPage} + '&size=' + ${size}"> &lt&lt Previous </a>
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+            </a>
+        </li>
+        <li class="page-item">
+            <a th:if="${page.hasNext()}" th:href="'/?page=' + ${nextPage} + '&size=' + ${size}"> Next &gt&gt </a>
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+
+
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 
 </body>
 </html>

@@ -12,10 +12,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.sql.Timestamp;
 
 @Entity
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -24,6 +25,7 @@ import java.sql.Timestamp;
 public class Post {
 
     private String title;
+
 
     @Type(type = "text")
     private String content;
@@ -36,12 +38,20 @@ public class Post {
     private Long id;
 
     private Timestamp timestamp;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     public Integer upVote() {
-         return score++;
+        return score++;
     }
 
     public Integer downVote() {
         return score--;
+    }
+
+    @Override
+    public String toString() {
+        return title;
     }
 }

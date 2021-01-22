@@ -3,10 +3,12 @@ package com.greenfox.reddit.service;
 import com.greenfox.reddit.model.Post;
 import com.greenfox.reddit.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +22,7 @@ public class RedditService {
     }
 
     public List<Post> findAll() {
-        List<Post> all = (List<Post>) postRepository.findAll();
+        List<Post> all = postRepository.findAll();
         return all;
     }
 
@@ -53,5 +55,9 @@ public class RedditService {
             savable.setScore(savable.getScore() - 1);
         }
         return savable;
+    }
+
+    public Page<Post> findByScore(int page, int size) {
+        return postRepository.findAll(PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "score")));
     }
 }
