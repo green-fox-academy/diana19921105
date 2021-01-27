@@ -14,7 +14,7 @@ public class Result {
 
     public Result(String action, Integer until) {
         if (action.equals("sum")) {
-            Integer sum = 0;
+            int sum = 0;
             for (int i = 0; i < until + 1; i++) {
                 sum += i;
             }
@@ -22,7 +22,7 @@ public class Result {
         }
 
         if (action.equals("factor")) {
-            Integer factor = 1;
+            int factor = 1;
             for (int i = 1; i < until + 1; i++) {
                 factor *= i;
             }

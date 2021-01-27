@@ -20,4 +20,8 @@ public class Arrays {
         this.what = what;
     }
 
+    @Override
+    public String toString() {
+        return "numbers: " + numbers + " , what: " + what;
+    }
 }
