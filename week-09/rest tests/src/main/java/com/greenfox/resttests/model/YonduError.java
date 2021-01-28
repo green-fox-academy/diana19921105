@@ -1,5 +1,6 @@
 package com.greenfox.resttests.model;
 
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -7,11 +8,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class GrootError {
+public class YonduError {
     private String error;
 
-    public GrootError(String error) {
-        this.error = "I am Groot!";
+    public YonduError(String error) {
+        this.error = "Something went wrong!";
     }
-
 }
