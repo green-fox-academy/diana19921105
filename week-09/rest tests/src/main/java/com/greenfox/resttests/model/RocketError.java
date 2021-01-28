@@ -11,7 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class RocketError {
 
-    private String error = "Task failed succesfully!";
+    private String error = "Task failed successfully!";
 
 
 }

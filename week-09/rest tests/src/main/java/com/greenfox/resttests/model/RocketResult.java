@@ -16,23 +16,24 @@ public class RocketResult {
     public RocketResult(String received, Integer amount) {
         this.received = received;
         this.amount = amount;
-        this.shipStatus = shipStatus();
+        this.shipStatus = getShipStatus();
         this.ready = isReady();
+
     }
 
-    public String shipStatus() {
-        if (amount / Double.parseDouble(received) == 40.0) {
-            this.shipStatus = "40%";
-        } else if (amount / Double.parseDouble(received) == 0.0) {
-            this.shipStatus = "empty";
-        } else if (amount / Double.parseDouble(received) == 100.0) {
-            this.shipStatus = "full";
-        } else if (amount / Double.parseDouble(received) > 100.0) {
-            this.shipStatus = "overloaded";
+    public String getShipStatus() {
+        int maximum = 12500;
+        double percent = (double) amount / maximum * 100;
+        if (percent > 0.0 && percent < 100.0) {
+            return percent + "%";
+        } else if (percent == 0.0) {
+            return "empty";
+        } else if (percent == 100.0) {
+            return "full";
+        } else {
+            return "overloaded";
         }
-        return shipStatus;
     }
-
 
     public Boolean isReady() {
         return shipStatus.equals("full");

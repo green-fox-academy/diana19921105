@@ -72,7 +72,7 @@ public class GuardianControllerTest {
                 .param("caliber", ".50")
                 .param("amount", "5000"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.shipStatus", is("40%")))
+                .andExpect(jsonPath("$.shipStatus", is("40.0%")))
                 .andExpect(jsonPath("$.ready", is(false)))
                 .andDo(print());
     }
@@ -100,10 +100,21 @@ public class GuardianControllerTest {
     }
 
     @Test
+    public void overloadedCargo() throws Exception {
+        mockMvc.perform(get("/rocket/fill")
+                .param("caliber", ".50")
+                .param("amount", "13500"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.shipStatus", is("overloaded")))
+                .andExpect(jsonPath("$.ready", is(false)))
+                .andDo(print());
+    }
+
+    @Test
     public void queryParamIsNotPresentAndResponseIsExpected() throws Exception {
         mockMvc.perform(get("/rocket/fill"))
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("error", is("Task failed succesfully!")))
+                .andExpect(jsonPath("error", is("Task failed successfully!")))
                 .andDo(print());
     }
 }
