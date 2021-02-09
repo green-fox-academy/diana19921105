@@ -1,11 +1,15 @@
 package com.greenfox.resttests.controller;
 
 import com.greenfox.resttests.model.Food;
+import com.greenfox.resttests.model.FoodRequest;
 import com.greenfox.resttests.model.GrootError;
 import com.greenfox.resttests.model.GrootResult;
 import com.greenfox.resttests.model.Rocket;
 import com.greenfox.resttests.model.RocketError;
 import com.greenfox.resttests.model.RocketResult;
+import com.greenfox.resttests.model.Song;
+import com.greenfox.resttests.model.SongRequest;
+import com.greenfox.resttests.model.SongResponseDto;
 import com.greenfox.resttests.model.YonduError;
 import com.greenfox.resttests.model.YonduResult;
 import com.greenfox.resttests.service.GuardianService;
@@ -21,15 +25,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+import java.util.NoSuchElementException;
+
 
 @RestController
 public class GuardianController {
 
-//    private GuardianService guardianService;
-//
-//    public GuardianController(GuardianService guardianService) {
-//        this.guardianService = guardianService;
-//    }
+    private GuardianService guardianService;
+
+
+    public GuardianController(GuardianService guardianService) {
+        this.guardianService = guardianService;
+    }
 
     @GetMapping("/groot")
     public ResponseEntity<?> groot(@RequestParam(required = false) String message) {
@@ -72,32 +80,116 @@ public class GuardianController {
         }
     }
 
-//    @GetMapping("/drax")
-//    public ResponseEntity<?> getAllFood() {
-//        return ResponseEntity.ok(guardianService.findAllFoods());
-//    }
+    @GetMapping("/drax")
+    public ResponseEntity<?> getAllFood() {
+        return ResponseEntity.ok(guardianService.findAllFoods());
+    }
 
-//    @PostMapping("/drax")
-//    public ResponseEntity<?> addFood(@RequestBody(required = false) Food food) {
-//        if (food != null) {
-//            return new ResponseEntity<>(guardianService.addFood(food), HttpStatus.CREATED);
-//        } else {
-//            return ResponseEntity.noContent().build();
-//        }
-//    }
-//
-//    @DeleteMapping("/drax")
-//    public ResponseEntity<?> deleteFood(@RequestBody(required = false) Long id) {
-//        if (id != null) {
-//
-//            return new ResponseEntity<>(guardianService.deleteFood(id), HttpStatus.ACCEPTED);
-//        } else {
-//            return ResponseEntity.noContent().build();
-//        }
-//    }
-//    @RequestMapping(value = "/drax/{id}", method = RequestMethod.PUT)
-//    public ResponseEntity<?> updateFood(@PathVariable Long id) {
-//        if (id != null) {
-//        }
-//    }
+    @PostMapping("/drax")
+    public ResponseEntity<?> addFood(@RequestBody(required = false) Food food) {
+        if (food != null) {
+            return new ResponseEntity<>(guardianService.addFood(food), HttpStatus.CREATED);
+        } else {
+            return ResponseEntity.noContent().build();
+        }
+    }
+
+    @DeleteMapping("/drax")
+    public ResponseEntity<?> deleteFood(@RequestBody Long id) {
+        if (id != null) {
+            try {
+                guardianService.deleteFood(id);
+
+            } catch (NoSuchElementException e) {
+                return ResponseEntity.notFound().build();
+            }
+            return ResponseEntity.accepted().build();
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @RequestMapping(value = "/drax/{id}", method = RequestMethod.PATCH)
+    public ResponseEntity<?> changeFoodAmount(@PathVariable Long id,
+                                              @RequestBody FoodRequest foodRequest) {
+        if (id != null && foodRequest.getAmount() > 0) {
+            try {
+                Food food = guardianService.changeAmount(id, foodRequest);
+                return ResponseEntity.ok(food);
+            } catch (NoSuchElementException e) {
+                return ResponseEntity.notFound().build();
+            }
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @GetMapping("/awesome")
+    public ResponseEntity<?> getAllSongs() {
+        return ResponseEntity.ok(guardianService.findAllSongs());
+    }
+
+    @PostMapping("/addSong")
+    public ResponseEntity<?> addSong(@RequestBody(required = false) Song song) {
+        if (song != null) {
+            return new ResponseEntity<>(guardianService.addSong(song), HttpStatus.CREATED);
+        } else {
+            return ResponseEntity.noContent().build();
+        }
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteSongById(@PathVariable Long id) {
+        if (id != null) {
+            try {
+                guardianService.deleteSongById(id);
+                return ResponseEntity.accepted().build();
+            } catch (NoSuchElementException e) {
+                return ResponseEntity.notFound().build();
+            }
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @RequestMapping(value = "/change-rating/{id}", method = RequestMethod.PATCH)
+    public ResponseEntity<?> changeRatingById(@PathVariable Long id,
+                                              @RequestBody SongRequest songRequest) {
+
+        if (id != null && songRequest.getRating() != null) {
+            try {
+                Song song = guardianService.changeRating(id, songRequest);
+                return ResponseEntity.ok(song);
+            } catch (NoSuchElementException e) {
+                return ResponseEntity.notFound().build();
+            }
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @GetMapping("/findBy")
+    public ResponseEntity<List<SongResponseDto>> findByParam(@RequestParam(required = false) String author,
+                                                             @RequestParam(required = false) Integer year,
+                                                             @RequestParam(required = false) Integer rating) {
+        if (author != null) {
+            List<SongResponseDto> filterByAuthor = guardianService.filterByAuthor(author);
+            return ResponseEntity.ok(filterByAuthor);
+        } else if (year != null) {
+            List<SongResponseDto> filterByYear = guardianService.filterByYear(year);
+            return ResponseEntity.ok(filterByYear);
+        } else if (rating != null) {
+            List<SongResponseDto> filterByRating = guardianService.filterByRating(rating);
+            return ResponseEntity.ok(filterByRating);
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @GetMapping("/favorite")
+    public ResponseEntity<List<SongResponseDto>> favoriteSongs(@RequestParam Integer limit) {
+        List<SongResponseDto> favoriteSongs = guardianService.favoriteSongs(limit);
+        return ResponseEntity.ok(favoriteSongs);
+    }
 }
+
