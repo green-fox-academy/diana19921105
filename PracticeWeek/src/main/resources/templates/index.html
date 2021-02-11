@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf Exercise #</title>
+    <link rel="stylesheet" th:href="@{/style.css}"/>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<h1>Welcome to rate my mentor!</h1>
+<h2>Give feedback for...</h2>
+<ul th:each="mentor:${mentors}">
+    <li><a th:href="'/mentor/' + ${mentor.getId()}"  th:text="${mentor.getName()}"></a> </li>
+</ul>
+<h2>Cant see your mentor on the list? Add them below!</h2>
+<form action="/mentor" method="post">
+    <label for="names">Name</label>
+    <input type="text" name="names" id="names">
+    <label for="classes">Class</label>
+    <select name="classes" id="classes">
+        <option th:each="class:${classes}" th:value="${class}" th:text="${class}"></option>
+    </select>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
