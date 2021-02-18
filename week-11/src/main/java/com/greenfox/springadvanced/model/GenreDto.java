@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Genres {
+public class GenreDto {
     private String name;
-    private String id;
+    private Integer id;
 }

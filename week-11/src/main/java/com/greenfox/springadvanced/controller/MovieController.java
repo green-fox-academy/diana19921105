@@ -2,8 +2,8 @@ package com.greenfox.springadvanced.controller;
 
 import com.greenfox.springadvanced.model.AuthenticationRequest;
 import com.greenfox.springadvanced.model.AuthenticationResponse;
-import com.greenfox.springadvanced.model.Genres;
-import com.greenfox.springadvanced.model.Movie;
+import com.greenfox.springadvanced.model.GenreDto;
+import com.greenfox.springadvanced.model.GenresListDto;
 import com.greenfox.springadvanced.service.MovieService;
 import com.greenfox.springadvanced.service.MyUserDetailService;
 import com.greenfox.springadvanced.service.SecurityService;
@@ -17,8 +17,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
@@ -69,7 +67,7 @@ public class MovieController {
     }
 
     @GetMapping("/genres")
-    public ResponseEntity<Genres> getGenres () throws IOException {
+    public ResponseEntity<GenresListDto> getGenres () throws IOException {
         return new ResponseEntity<>(movieService.callGenres(), HttpStatus.OK);
     }
 }

@@ -1,15 +1,14 @@
 package com.greenfox.springadvanced.service;
 
-import com.greenfox.springadvanced.model.Genres;
+import com.greenfox.springadvanced.model.GenreDto;
+import com.greenfox.springadvanced.model.GenresListDto;
 import com.greenfox.springadvanced.model.Movie;
 import com.greenfox.springadvanced.model.MovieServiceGenerator;
-
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
 import retrofit2.Response;
 
 import java.io.IOException;
-
 import java.util.List;
 
 
@@ -24,16 +23,10 @@ public class MovieService {
         return movieCall.execute().body();
     }
 
-    public List<Movie> getAllMovies() throws IOException {
-        Call<List<Movie>> movieList = movieApiService.getAllMovies(apiKey);
-        Response<List<Movie>> response = movieList.execute();
-        return response.body();
-    }
+    public GenresListDto callGenres() throws IOException {
+        Call<GenresListDto> call = movieApiService.getAllGenre(apiKey);
 
-    public Genres callGenres() throws IOException {
-        Call<Genres> call = movieApiService.getAllGenre(apiKey);
-
-        Response<Genres> response = call.execute();
+        Response<GenresListDto> response = call.execute();
         return response.body();
     }
 }

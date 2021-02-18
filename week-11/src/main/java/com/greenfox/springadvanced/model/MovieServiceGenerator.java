@@ -7,7 +7,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MovieServiceGenerator {
-    private static final String BASE_URL = "https://api.themovieidb.org/3/";
+    private static final String BASE_URL = "https://api.themoviedb.org/3/";
     private static Retrofit.Builder builder =
             new Retrofit.Builder()
                     .baseUrl(BASE_URL)
