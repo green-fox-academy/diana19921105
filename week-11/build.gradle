@@ -36,8 +36,10 @@ dependencies {
     implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.2'
     implementation group: 'javax.xml', name: 'jaxb-api', version: '2.1'
 
-
+    compile 'com.squareup.retrofit2:retrofit:2.2.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.2.0'
 }
+
 
 test {
     useJUnitPlatform()
