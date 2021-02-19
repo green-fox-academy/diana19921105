@@ -4,6 +4,8 @@ import com.greenfox.springadvanced.model.AuthenticationRequest;
 import com.greenfox.springadvanced.model.AuthenticationResponse;
 import com.greenfox.springadvanced.model.GenreDto;
 import com.greenfox.springadvanced.model.GenresListDto;
+
+import com.greenfox.springadvanced.model.MovieDto;
 import com.greenfox.springadvanced.service.MovieService;
 import com.greenfox.springadvanced.service.MyUserDetailService;
 import com.greenfox.springadvanced.service.SecurityService;
@@ -15,6 +17,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -69,5 +72,10 @@ public class MovieController {
     @GetMapping("/genres")
     public ResponseEntity<GenresListDto> getGenres () throws IOException {
         return new ResponseEntity<>(movieService.callGenres(), HttpStatus.OK);
+    }
+
+    @GetMapping("/movie/{id}")
+    public ResponseEntity<MovieDto> getMovieById(@PathVariable Integer id) throws IOException {
+        return new ResponseEntity<>(movieService.showMovieById(id), HttpStatus.OK);
     }
 }

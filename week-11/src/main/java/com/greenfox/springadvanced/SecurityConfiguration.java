@@ -28,13 +28,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(myUserDetailService);
+        auth.inMemoryAuthentication()
+                .withUser("user").password(getPasswordEncoder().encode("pass"))
+                .authorities("user")
+                .and().withUser("admin").password(getPasswordEncoder().encode("password"))
+                .authorities("admin");
+//        auth.userDetailsService(myUserDetailService);
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
-                .authorizeRequests().antMatchers("/login").permitAll()
+                .authorizeRequests()
+                .antMatchers("/login")
+                .permitAll()
+                .antMatchers("/admin").hasAuthority("admin")
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()
